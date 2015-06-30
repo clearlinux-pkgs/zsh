@@ -1,0 +1,5 @@
+--with-tcsetpgrp
+--enable-etcdir=/usr/share/defaults/etc
+--enable-zshenv=/usr/share/defaults/etc/zshenv
+--enable-zlogin=/usr/share/defaults/etc/zlogin
+--enable-zshrc=/usr/share/defaults/etc/zshrc

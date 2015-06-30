@@ -1,0 +1,4 @@
+install -d -m 755 %{buildroot}/usr/share/defaults/etc
+install -m 644 StartupFiles/zlogin  %{buildroot}/usr/share/defaults/etc/
+install -m 644 StartupFiles/zshenv  %{buildroot}/usr/share/defaults/etc/
+install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
