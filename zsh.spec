@@ -4,7 +4,7 @@
 #
 Name     : zsh
 Version  : 5.2
-Release  : 10
+Release  : 11
 URL      : http://sourceforge.net/projects/zsh/files/zsh/5.2/zsh-5.2.tar.gz
 Source0  : http://sourceforge.net/projects/zsh/files/zsh/5.2/zsh-5.2.tar.gz
 Summary  : No detailed summary available
@@ -77,6 +77,12 @@ lib components for the zsh package.
 --enable-zlogin=/usr/share/defaults/etc/zlogin \
 --enable-zshrc=/usr/share/defaults/etc/zshrc
 make V=1  %{?_smp_mflags}
+
+%check
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
+make check
 
 %install
 rm -rf %{buildroot}
