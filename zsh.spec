@@ -4,7 +4,7 @@
 #
 Name     : zsh
 Version  : 5.2
-Release  : 11
+Release  : 12
 URL      : http://sourceforge.net/projects/zsh/files/zsh/5.2/zsh-5.2.tar.gz
 Source0  : http://sourceforge.net/projects/zsh/files/zsh/5.2/zsh-5.2.tar.gz
 Summary  : No detailed summary available
