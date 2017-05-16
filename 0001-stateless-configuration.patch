@@ -1,24 +1,22 @@
-From b3dfbd509e1ed549ccb80c9d2c99c512dada0eab Mon Sep 17 00:00:00 2001
+From 9f7fdf022a96a4c10070585fa29040f0f2fd1f7e Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
-Date: Mon, 20 Jul 2015 19:39:06 -0500
+Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
 
 ---
- StartupFiles/zlogin |  17 ++-----
- StartupFiles/zshenv |  18 ++-----
- StartupFiles/zshrc  | 138 +++-------------------------------------------------
- 3 files changed, 13 insertions(+), 160 deletions(-)
+ StartupFiles/zlogin |  15 +----
+ StartupFiles/zshenv |  10 +--
+ StartupFiles/zshrc  | 175 +++++++---------------------------------------------
+ 3 files changed, 29 insertions(+), 171 deletions(-)
 
 diff --git a/StartupFiles/zlogin b/StartupFiles/zlogin
-index c1a85de..e20fcec 100644
+index c1a85de..bd6b8b4 100644
 --- a/StartupFiles/zlogin
 +++ b/StartupFiles/zlogin
-@@ -7,17 +7,6 @@
- # type and run a series of external commands (fortune,
- # msgs, from, etc).
+@@ -9,15 +9,6 @@
  #
--
--# THIS FILE IS NOT INTENDED TO BE USED AS /etc/zlogin, NOR WITHOUT EDITING
+ 
+ # THIS FILE IS NOT INTENDED TO BE USED AS /etc/zlogin, NOR WITHOUT EDITING
 -return 0	# Remove this line after editing this file as appropriate
 -
 -clear
@@ -35,10 +33,10 @@ index c1a85de..e20fcec 100644
 +    source /etc/zlogin
 +fi
 diff --git a/StartupFiles/zshenv b/StartupFiles/zshenv
-index 23363a4..51327ff 100644
+index 23363a4..ff59a6d 100644
 --- a/StartupFiles/zshenv
 +++ b/StartupFiles/zshenv
-@@ -10,22 +10,10 @@
+@@ -10,13 +10,9 @@
  # commands that produce output or assume the shell is attached to a tty.
  #
  
@@ -53,26 +51,16 @@ index 23363a4..51327ff 100644
 +    source /etc/zshenv
 +fi
  
--# Some people insist on setting their PATH here to affect things like ssh.
--# Those that do should probably use $SHLVL to ensure that this only happens
--# the first time the shell is started (to avoid overriding a customized
--# environment).  Also, the various profile/rc/login files all get sourced
--# *after* this file, so they will override this value.  One solution is to
--# put your path-setting code into a file named .zpath, and source it from
--# both here (if we're not a login shell) and from the .zprofile file (which
--# is only sourced if we are a login shell).
- if [[ $SHLVL == 1 && ! -o LOGIN ]]; then
-     source ~/.zpath
- fi
+ # Some people insist on setting their PATH here to affect things like ssh.
+ # Those that do should probably use $SHLVL to ensure that this only happens
 diff --git a/StartupFiles/zshrc b/StartupFiles/zshrc
-index 445209e..9f757be 100644
+index d4e1d03..4344aa9 100644
 --- a/StartupFiles/zshrc
 +++ b/StartupFiles/zshrc
-@@ -6,100 +6,20 @@
- # options, key bindings, etc.
+@@ -7,157 +7,28 @@
  #
  
--# THIS FILE IS NOT INTENDED TO BE USED AS /etc/zshrc, NOR WITHOUT EDITING
+ # THIS FILE IS NOT INTENDED TO BE USED AS /etc/zshrc, NOR WITHOUT EDITING
 -return 0	# Remove this line after editing this file as appropriate
 -
 -# Search path for the cd command
@@ -86,10 +74,10 @@ index 445209e..9f757be 100644
 -
 -umask 022
 -
- # Set up aliases
- alias mv='nocorrect mv'       # no spelling correction on mv
- alias cp='nocorrect cp'       # no spelling correction on cp
- alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
+-# Set up aliases
+-alias mv='nocorrect mv'       # no spelling correction on mv
+-alias cp='nocorrect cp'       # no spelling correction on cp
+-alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 -alias j=jobs
 -alias pu=pushd
 -alias po=popd
@@ -105,8 +93,8 @@ index 445209e..9f757be 100644
 -
 -# List only file beginning with "."
 -alias lsa='ls -ld .*'
- 
- # Shell functions
+-
+-# Shell functions
 -setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
 -freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 -
@@ -127,15 +115,14 @@ index 445209e..9f757be 100644
 -alias -g M='|more'
 -alias -g H='|head'
 -alias -g T='|tail'
-+#setenv() { typeset -x "${1}${1:+=}${(@)argv[2,$#]}" }  # csh compatibility
- 
- manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
- export MANPATH
- 
+-
+-manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
+-export MANPATH
+-
 -# Hosts to use for completion (see later zstyle)
 -hosts=(`hostname` ftp.math.gatech.edu prep.ai.mit.edu wuarchive.wustl.edu)
 -
- # Set prompts
+-# Set prompts
 -PROMPT='%m%# '    # default prompt
 -RPROMPT=' %~'     # prompt for right side of screen
 -
@@ -143,6 +130,7 @@ index 445209e..9f757be 100644
 -export MAIL=/var/spool/mail/$USERNAME
 -export LESS=-cex3M
 -export HELPDIR=/usr/share/zsh/$ZSH_VERSION/help  # directory for run-help function to find docs
+-unalias run-help && autoload -Uz run-help
 -
 -MAILCHECK=300
 -HISTSIZE=200
@@ -167,19 +155,19 @@ index 445209e..9f757be 100644
 -zmodload -ap zsh/mapfile mapfile
 -# stat(1) is now commonly an external command, so just load zstat
 -zmodload -aF zsh/stat b:zstat
-+PROMPT='%n@%m %~ %# '    # default prompt
-+#RPROMPT=' %~'     # prompt for right side of screen
- 
- # Some nice key bindings
- #bindkey '^X^Z' universal-argument ' ' magic-space
-@@ -110,53 +30,9 @@ zmodload -aF zsh/stat b:zstat
- #bindkey -s '\M-=' \|
- 
- # bindkey -v               # vi key bindings
+-
+-# Some nice key bindings
+-#bindkey '^X^Z' universal-argument ' ' magic-space
+-#bindkey '^X^A' vi-find-prev-char-skip
+-#bindkey '^Xa' _expand_alias
+-#bindkey '^Z' accept-and-hold
+-#bindkey -s '\M-/' \\\\
+-#bindkey -s '\M-=' \|
+-
+-# bindkey -v               # vi key bindings
 -
 -bindkey -e                 # emacs key bindings
-+# bindkey -e               # emacs key bindings
- bindkey ' ' magic-space    # also do history expansion on space
+-bindkey ' ' magic-space    # also do history expansion on space
 -bindkey '^I' complete-word # complete on tab, leave expansion to _expand
 -
 -# Setup new style completion system. To see examples of the old style (compctl
@@ -196,7 +184,15 @@ index 445209e..9f757be 100644
 -# allow one error for every three characters typed in approximate completer
 -zstyle -e ':completion:*:approximate:*' max-errors \
 -    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
--    
++#
++if [ -f /etc/zshrc ]; then
++    source /etc/zshrc
++else
++    # Set up aliases
++    alias mv='nocorrect mv'       # no spelling correction on mv
++    alias cp='nocorrect cp'       # no spelling correction on cp
++    alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
+     
 -# insert all expansions for expand completer
 -zstyle ':completion:*:expand:*' tag-order all-expansions
 -
@@ -224,12 +220,24 @@ index 445209e..9f757be 100644
 -    '*?.old' '*?.pro'
 -# the same for old style completion
 -#fignore=(.o .c~ .old .pro)
++    manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
++    export MANPATH
++    
++    # Set prompts
++    PROMPT='%m%# '    # default prompt
++    
++    # Set/unset  shell options
++    setopt  menucomplete; autoload compinit; compinit;
++    
++    # bindkey -v               # vi key bindings
++    # bindkey -e                 # emacs key bindings
++    bindkey ' ' magic-space    # also do history expansion on space
++    
++    umask 022
++fi
  
 -# ignore completion functions (until the _ignored completer)
 -zstyle ':completion:*:functions' ignored-patterns '_*'
-+if [ -f /etc/zshrc ]; then
-+    source /etc/zshrc
-+fi
 -- 
-2.1.0
+2.7.4
 
