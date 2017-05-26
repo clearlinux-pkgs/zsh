@@ -1,13 +1,13 @@
-From 9f7fdf022a96a4c10070585fa29040f0f2fd1f7e Mon Sep 17 00:00:00 2001
+From 578b1943f674f57bb93aca0a72ba995a593858a1 Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
 
 ---
  StartupFiles/zlogin |  15 +----
- StartupFiles/zshenv |  10 +--
+ StartupFiles/zshenv |  20 +-----
  StartupFiles/zshrc  | 175 +++++++---------------------------------------------
- 3 files changed, 29 insertions(+), 171 deletions(-)
+ 3 files changed, 28 insertions(+), 182 deletions(-)
 
 diff --git a/StartupFiles/zlogin b/StartupFiles/zlogin
 index c1a85de..bd6b8b4 100644
@@ -33,10 +33,10 @@ index c1a85de..bd6b8b4 100644
 +    source /etc/zlogin
 +fi
 diff --git a/StartupFiles/zshenv b/StartupFiles/zshenv
-index 23363a4..ff59a6d 100644
+index 23363a4..3badfb1 100644
 --- a/StartupFiles/zshenv
 +++ b/StartupFiles/zshenv
-@@ -10,13 +10,9 @@
+@@ -10,22 +10,6 @@
  # commands that produce output or assume the shell is attached to a tty.
  #
  
@@ -47,12 +47,20 @@ index 23363a4..ff59a6d 100644
 -# rm, mv, etc. into the system profiles.  Just be sure to put "unalias alias"
 -# in your own rc file(s) if you use this.
 -alias alias=:
+-
+-# Some people insist on setting their PATH here to affect things like ssh.
+-# Those that do should probably use $SHLVL to ensure that this only happens
+-# the first time the shell is started (to avoid overriding a customized
+-# environment).  Also, the various profile/rc/login files all get sourced
+-# *after* this file, so they will override this value.  One solution is to
+-# put your path-setting code into a file named .zpath, and source it from
+-# both here (if we're not a login shell) and from the .zprofile file (which
+-# is only sourced if we are a login shell).
+-if [[ $SHLVL == 1 && ! -o LOGIN ]]; then
+-    source ~/.zpath
 +if [ -f /etc/zshenv ]; then
 +    source /etc/zshenv
-+fi
- 
- # Some people insist on setting their PATH here to affect things like ssh.
- # Those that do should probably use $SHLVL to ensure that this only happens
+ fi
 diff --git a/StartupFiles/zshrc b/StartupFiles/zshrc
 index d4e1d03..4344aa9 100644
 --- a/StartupFiles/zshrc
