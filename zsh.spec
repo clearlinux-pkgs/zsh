@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.3.1
-Release  : 16
+Release  : 17
 URL      : http://sourceforge.net/projects/zsh/files/zsh/5.3.1/zsh-5.3.1.tar.gz
 Source0  : http://sourceforge.net/projects/zsh/files/zsh/5.3.1/zsh-5.3.1.tar.gz
 Source99 : http://sourceforge.net/projects/zsh/files/zsh/5.3.1/zsh-5.3.1.tar.gz.asc
@@ -78,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494964411
+export SOURCE_DATE_EPOCH=1496174498
 %configure --disable-static --with-tcsetpgrp \
 --enable-etcdir=/usr/share/defaults/etc \
 --enable-zshenv=/usr/share/defaults/etc/zshenv \
@@ -94,7 +94,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1494964411
+export SOURCE_DATE_EPOCH=1496174498
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
@@ -1250,7 +1250,6 @@ install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
 /usr/share/zsh/5.3.1/help/zsocket
 /usr/share/zsh/5.3.1/help/zstyle
 /usr/share/zsh/5.3.1/help/ztcp
-/usr/share/zsh/5.3.1/scripts/newuser
 
 %files doc
 %defattr(-,root,root,-)
