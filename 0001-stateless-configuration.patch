@@ -1,22 +1,42 @@
-From 578b1943f674f57bb93aca0a72ba995a593858a1 Mon Sep 17 00:00:00 2001
+From ac2e5118e69931ff196a60fda3e85b39e32b6fd1 Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
 
+Aditionally, remove the auto run of zsh-newuser-install
+if user has no ~/.zshrc file. we do decent defaults and
+this should not run automatically for new users.
 ---
- StartupFiles/zlogin |  15 +----
- StartupFiles/zshenv |  20 +-----
- StartupFiles/zshrc  | 175 +++++++---------------------------------------------
- 3 files changed, 28 insertions(+), 182 deletions(-)
+ Scripts/newuser     |   8 --
+ StartupFiles/zlogin |  16 +---
+ StartupFiles/zshenv |  71 +++++++++++++-----
+ StartupFiles/zshrc  | 210 ++++++++++++++--------------------------------------
+ 4 files changed, 111 insertions(+), 194 deletions(-)
+ delete mode 100644 Scripts/newuser
 
+diff --git a/Scripts/newuser b/Scripts/newuser
+deleted file mode 100644
+index b5d7421..0000000
+--- a/Scripts/newuser
++++ /dev/null
+@@ -1,8 +0,0 @@
+-# zsh script sourced at startup when a user is found to have
+-# no startup files.  See the documentation for the zsh/newuser
+-# module in zshmodules(1).
+-
+-if functions zsh-newuser-install >/dev/null 2>&1 ||
+-   autoload -U +X zsh-newuser-install; then
+-   zsh-newuser-install
+-fi
 diff --git a/StartupFiles/zlogin b/StartupFiles/zlogin
-index c1a85de..bd6b8b4 100644
+index c1a85de..22c179e 100644
 --- a/StartupFiles/zlogin
 +++ b/StartupFiles/zlogin
-@@ -9,15 +9,6 @@
+@@ -8,16 +8,6 @@
+ # msgs, from, etc).
  #
  
- # THIS FILE IS NOT INTENDED TO BE USED AS /etc/zlogin, NOR WITHOUT EDITING
+-# THIS FILE IS NOT INTENDED TO BE USED AS /etc/zlogin, NOR WITHOUT EDITING
 -return 0	# Remove this line after editing this file as appropriate
 -
 -clear
@@ -33,10 +53,10 @@ index c1a85de..bd6b8b4 100644
 +    source /etc/zlogin
 +fi
 diff --git a/StartupFiles/zshenv b/StartupFiles/zshenv
-index 23363a4..3badfb1 100644
+index 23363a4..4653c7c 100644
 --- a/StartupFiles/zshenv
 +++ b/StartupFiles/zshenv
-@@ -10,22 +10,6 @@
+@@ -10,22 +10,57 @@
  # commands that produce output or assume the shell is attached to a tty.
  #
  
@@ -58,17 +78,69 @@ index 23363a4..3badfb1 100644
 -# is only sourced if we are a login shell).
 -if [[ $SHLVL == 1 && ! -o LOGIN ]]; then
 -    source ~/.zpath
++
++PATH="/usr/local/bin:/usr/bin"
++
++manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
++export MANPATH
++
++if [[ -x "/bin/vi" ]]; then
++        EDITOR="/usr/bin/vi"
++else
++        EDITOR="/usr/bin/nano"  # we have nano by default
++fi
++test -z "$TERM" && TERM="xterm" # Basic terminal capab. For screen etc.
++
++if [ ! -e /etc/localtime ]; then
++        TZ="UTC"                # Time Zone. Look at http://theory.uwinnipeg.ca/gnu/glibc/libc_303.html
++                                # for an explanation of how to set this to your local timezone.
++        export TZ
++fi
++
++# Set some flags
++CFLAGS="-g -O3 -feliminate-unused-debug-types  -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wl,--copy-dt-needed-entries -m64  -fasynchronous-unwind-tables -Wp,-D_REENTRANT -ftree-loop-distribute-patterns -Wl,-z -Wl,now -Wl,-z -Wl,relro -malign-data=abi -fno-semantic-interposition -ftree-vectorize -ftree-loop-vectorize "
++FFLAGS="-g -O3 -feliminate-unused-debug-types  -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wl,--copy-dt-needed-entries -m64 -fasynchronous-unwind-tables -Wp,-D_REENTRANT -ftree-loop-distribute-patterns -Wl,-z -Wl,now -Wl,-z -Wl,relro -malign-data=abi -fno-semantic-interposition -ftree-vectorize  -ftree-loop-vectorize "
++CFFLAGS="-g -O3 -feliminate-unused-debug-types  -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wl,--copy-dt-needed-entries -m64  -fasynchronous-unwind-tables -Wp,-D_REENTRANT -ftree-loop-distribute-patterns -Wl,-z -Wl,now -Wl,-z -Wl,relro -malign-data=abi -fno-semantic-interposition -ftree-vectorize  -ftree-loop-vectorize "
++CXXFLAGS="$CFLAGS -fvisibility-inlines-hidden "
++
++export GOMP_SPINCOUNT=1000
++export AR=gcc-ar
++export CXX=g++
++export RANLIB=gcc-ranlib
++export LA_VERSION="OpenBLAS"
++export LA_LIBS=/usr/lib64/libopenblas.so.0
++export LA_INCLUDE=/usr/include
++export LA_PATH=/usr/lib64/
++export MPI_CC=/usr/bin/mpicc
++export MPI_LIBS=/usr/lib64/libmpich.so
++export MPI_INCLUDE=/usr/include/
++export MPI_PATH=/usr/lib64/
++export MPI_VERSION=3.2
++export THEANO_FLAGS='floatX=float32,openmp=true,gcc.cxxflags="-ftree-vectorize -mavx"'
++export CC=gcc
++
++for langfile in /usr/share/defaults/etc/locale.conf /etc/locale.conf "$HOME/.i18n" ; do
++    [ -f $langfile ] && . $langfile
++done
++
++export LANG LANGUAGE LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION
++
++XDG_CONFIG_DIRS=/usr/share/xdg:/etc/xdg
++
++export PATH EDITOR TERM CFLAGS CXXFLAGS CFFLAGS FFLAGS XDG_CONFIG_DIRS
++
 +if [ -f /etc/zshenv ]; then
 +    source /etc/zshenv
  fi
 diff --git a/StartupFiles/zshrc b/StartupFiles/zshrc
-index d4e1d03..4344aa9 100644
+index d4e1d03..3a83e97 100644
 --- a/StartupFiles/zshrc
 +++ b/StartupFiles/zshrc
-@@ -7,157 +7,28 @@
+@@ -6,158 +6,58 @@
+ # options, key bindings, etc.
  #
  
- # THIS FILE IS NOT INTENDED TO BE USED AS /etc/zshrc, NOR WITHOUT EDITING
+-# THIS FILE IS NOT INTENDED TO BE USED AS /etc/zshrc, NOR WITHOUT EDITING
 -return 0	# Remove this line after editing this file as appropriate
 -
 -# Search path for the cd command
@@ -192,15 +264,7 @@ index d4e1d03..4344aa9 100644
 -# allow one error for every three characters typed in approximate completer
 -zstyle -e ':completion:*:approximate:*' max-errors \
 -    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-+#
-+if [ -f /etc/zshrc ]; then
-+    source /etc/zshrc
-+else
-+    # Set up aliases
-+    alias mv='nocorrect mv'       # no spelling correction on mv
-+    alias cp='nocorrect cp'       # no spelling correction on cp
-+    alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
-     
+-    
 -# insert all expansions for expand completer
 -zstyle ':completion:*:expand:*' tag-order all-expansions
 -
@@ -228,24 +292,64 @@ index d4e1d03..4344aa9 100644
 -    '*?.old' '*?.pro'
 -# the same for old style completion
 -#fignore=(.o .c~ .old .pro)
-+    manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
-+    export MANPATH
-+    
-+    # Set prompts
-+    PROMPT='%m%# '    # default prompt
-+    
-+    # Set/unset  shell options
-+    setopt  menucomplete; autoload compinit; compinit;
-+    
-+    # bindkey -v               # vi key bindings
-+    # bindkey -e                 # emacs key bindings
-+    bindkey ' ' magic-space    # also do history expansion on space
-+    
-+    umask 022
-+fi
- 
+-
 -# ignore completion functions (until the _ignored completer)
 -zstyle ':completion:*:functions' ignored-patterns '_*'
++if [ -f /etc/zshrc ]; then
++    source /etc/zshrc
++else
++    # Set up aliases
++    alias mv='nocorrect mv'       # no spelling correction on mv
++    alias cp='nocorrect cp'       # no spelling correction on cp
++    alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
++    alias ls='ls --color=auto'    # default ls with colors
++
++    # Set prompt
++    # endchar color (red if return status != 0)
++    root_endch="%(?.#.%F{red}#%f)"
++    other_endch="%(?.%%.%F{red}%%%f)"
++
++    # conditional %(cond.true.false)
++    endchar="%(#.${root_endch}.${other_endch})"
++
++    # use red for root and blue(39) for non-root users
++    username="%F{%(#.red.39)}%n%f"
++
++    # host in orange
++    host="%F{208}%m%f"
++
++    # current directory in blue(39)
++    dir="%F{39}%~%f"
++
++    PROMPT="${username}@${host} ${dir} ${endchar} "
++
++    # Set/unset shell options
++    setopt  menucomplete; autoload compinit; compinit;
++
++    # bindkey -v                  # vi key bindings
++    bindkey -e                    # emacs key bindings
++    bindkey ' ' magic-space       # also do history expansion on space
++
++    # Enable past command match search with up/down arrows
++    autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
++    zle -N up-line-or-beginning-search
++    zle -N down-line-or-beginning-search
++    [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
++    [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
++
++    # Enable Ctrl-R history search
++    bindkey '^R' history-incremental-search-backward
++
++    # Enable command comments on interactive mode (e.g: % #echo foo)
++    setopt interactivecomments
++
++    # Don't show '%' for EOL missing '\n'
++    PROMPT_EOL_MARK=""
++
++
++    umask 022
++fi
++
 -- 
-2.7.4
+2.13.0
 
