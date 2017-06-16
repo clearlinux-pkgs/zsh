@@ -1,4 +1,4 @@
-From 20261db4fb73212890c6fb599d75c9d89d1a6786 Mon Sep 17 00:00:00 2001
+From 9a98e7eb3d9a1efb99e99610ba60b44b89083fff Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
@@ -9,9 +9,9 @@ this should not run automatically for new users.
 ---
  Scripts/newuser     |   8 --
  StartupFiles/zlogin |  16 +---
- StartupFiles/zshenv |  71 ++++++++++++-----
+ StartupFiles/zshenv |  68 ++++++++++++-----
  StartupFiles/zshrc  | 214 +++++++++++++++-------------------------------------
- 4 files changed, 115 insertions(+), 194 deletions(-)
+ 4 files changed, 112 insertions(+), 194 deletions(-)
  delete mode 100644 Scripts/newuser
 
 diff --git a/Scripts/newuser b/Scripts/newuser
@@ -53,10 +53,10 @@ index c1a85de..22c179e 100644
 +    source /etc/zlogin
 +fi
 diff --git a/StartupFiles/zshenv b/StartupFiles/zshenv
-index 23363a4..4653c7c 100644
+index 23363a4..bdf8861 100644
 --- a/StartupFiles/zshenv
 +++ b/StartupFiles/zshenv
-@@ -10,22 +10,57 @@
+@@ -10,22 +10,54 @@
  # commands that produce output or assume the shell is attached to a tty.
  #
  
@@ -80,9 +80,6 @@ index 23363a4..4653c7c 100644
 -    source ~/.zpath
 +
 +PATH="/usr/local/bin:/usr/bin"
-+
-+manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
-+export MANPATH
 +
 +if [[ -x "/bin/vi" ]]; then
 +        EDITOR="/usr/bin/vi"
