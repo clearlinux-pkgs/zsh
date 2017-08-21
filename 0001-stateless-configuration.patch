@@ -1,4 +1,4 @@
-From 9a98e7eb3d9a1efb99e99610ba60b44b89083fff Mon Sep 17 00:00:00 2001
+From aed0855a815889bfc45fabc23a383f0880c41d67 Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
@@ -9,9 +9,9 @@ this should not run automatically for new users.
 ---
  Scripts/newuser     |   8 --
  StartupFiles/zlogin |  16 +---
- StartupFiles/zshenv |  68 ++++++++++++-----
- StartupFiles/zshrc  | 214 +++++++++++++++-------------------------------------
- 4 files changed, 112 insertions(+), 194 deletions(-)
+ StartupFiles/zshenv |  68 ++++++++++----
+ StartupFiles/zshrc  | 252 ++++++++++++++++++++--------------------------------
+ 4 files changed, 150 insertions(+), 194 deletions(-)
  delete mode 100644 Scripts/newuser
 
 diff --git a/Scripts/newuser b/Scripts/newuser
@@ -130,10 +130,10 @@ index 23363a4..bdf8861 100644
 +    source /etc/zshenv
  fi
 diff --git a/StartupFiles/zshrc b/StartupFiles/zshrc
-index d4e1d03..c47260a 100644
+index d4e1d03..61a1693 100644
 --- a/StartupFiles/zshrc
 +++ b/StartupFiles/zshrc
-@@ -6,158 +6,62 @@
+@@ -6,158 +6,100 @@
  # options, key bindings, etc.
  #
  
@@ -338,8 +338,46 @@ index d4e1d03..c47260a 100644
 +    bindkey '^R' history-incremental-search-backward
 +
 +    # Enable home/end keys
-+    bindkey "${terminfo[khome]}" beginning-of-line
-+    bindkey "${terminfo[kend]}" end-of-line
++    # http://www.zshwiki.org/home/zle/bindkeys#reading_terminfo
++    # create a zkbd compatible hash;
++    # to add other keys to this hash, see: man 5 terminfo
++    typeset -A key
++
++    key[Home]="$terminfo[khome]"
++    key[End]="$terminfo[kend]"
++    key[Insert]="$terminfo[kich1]"
++    key[Backspace]="$terminfo[kbs]"
++    key[Delete]="$terminfo[kdch1]"
++    key[Up]="$terminfo[kcuu1]"
++    key[Down]="$terminfo[kcud1]"
++    key[Left]="$terminfo[kcub1]"
++    key[Right]="$terminfo[kcuf1]"
++    key[PageUp]="$terminfo[kpp]"
++    key[PageDown]="$terminfo[knp]"
++
++    # setup key accordingly
++    [[ -n "$key[Home]"      ]] && bindkey -- "$key[Home]"      beginning-of-line
++    [[ -n "$key[End]"       ]] && bindkey -- "$key[End]"       end-of-line
++    [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode
++    [[ -n "$key[Backspace]" ]] && bindkey -- "$key[Backspace]" backward-delete-char
++    [[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
++    [[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        up-line-or-history
++    [[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      down-line-or-history
++    [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
++    [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
++
++    # Finally, make sure the terminal is in application mode, when zle is
++    # active. Only then are the values from $terminfo valid.
++    if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
++        function zle-line-init () {
++            echoti smkx
++        }
++        function zle-line-finish () {
++            echoti rmkx
++        }
++        zle -N zle-line-init
++        zle -N zle-line-finish
++    fi
 +
 +    # Enable command comments on interactive mode (e.g: % #echo foo)
 +    setopt interactivecomments
@@ -352,5 +390,5 @@ index d4e1d03..c47260a 100644
 +fi
 +
 -- 
-2.13.1
+2.14.1
 
