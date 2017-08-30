@@ -1,4 +1,100 @@
+2017-08-27  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* unposted: Config/version.mk: 5.4.2.
+
+2017-08-25  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* 41599: README, Etc/FAQ.yo: updates for 5.4.2.
+
+2017-08-25  William da Silva  <w.vigolodasilva@gmail.com>
+
+	* 41602 (tweaked): Completion/Unix/Command/_gpg: Improve wording
+	in gpg completion.
+
+2017-08-25  Oliver Kiddle  <opk@zsh.org>
+
+	* 41601: Completion/Unix/Command/_arp,
+	Completion/Unix/Command/_route: handle system differences
+	in arp completion and add function for route
+
+	* 41600: Completion/Unix/Command/_mpc: fix quoting of
+	songs for completion and avoid sending errors to stderr
+
+	* 41598: Completion/Unix/Command/_w,
+	Completion/Unix/Command/_who: new who and w completions
+
+2017-08-24  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* 41590 (modified as per 41595): README, Doc/Zsh/options.yo,
+	Src/exec.c, Src/init.c, Src/loop.c, Src/signals.c, Src/zsh.h,
+	Test/E01options.ztst: make ERR_RETURN work within each function
+	context, leaving ERR_EXIT global.
+
+2017-08-22  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* 41565: Functions/VCS_Info/VCS_INFO_patch2subject: vcs_info
+	patch2subject: Support `svn log -r N --diff` output.
+
+2017-08-18  Oliver Kiddle  <opk@zsh.org>
+
+	* 41568: Completion/Unix/Command/_vmstat: handle vmstat options
+	on NetBSD and Solaris and add some exclusion lists
+
+	* 41563: Completion/Base/Utility/_regex_words: fix completion
+	description alignment with _regex_words
+
+	* 41562: Completion/BSD/Command/_rcctl: correct completed word
+
+	* 41561: Completion/Unix/Command/_dhclient: handle Free/OpenBSD
+	and bring options up-to-date for the ISC implementation
+
+	* 41560: Completion/Unix/Command/_chsh: cleanup chsh completion
+	for different platforms
+
+2017-08-16  Oliver Kiddle  <opk@zsh.org>
+
+	* Tomasz Pala: users/22834: Completion/Linux/Command/_modutils:
+	fix irritating bug in file glob for Linux kernel modules
+
+	* Tomasz Pala: users/22834: Completion/Unix/Command/_ip:
+	allow completion after -c and a few other new options
+
+	* 41556: Completion/Solaris/Command/_snoop
+	Completion/Unix/Command/_ngrep, Completion/Unix/Command/_tcpdump,
+	Completion/Unix/Type/_bpf_filters: complete BPF (libpcap) filters
+
+	* 41552: Completion/Unix/Command/_git: complete only branches
+	after git worktree add --detach because the --detach is
+	superfluous for other commits
+
+2017-08-15  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* posted twice but has not shown up: Src/exec.c, Src/zsh.h:
+	record file desriptors that remain open to save ones in the
+	range 0 to 9 in fdtable and close them on forking.
+
+2017-08-14  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Phil: 4152: Src/Modules/pcre.c, Test/V07pcre.ztst: fix big
+	with uninititialised memory in logic for extracting matched
+	parentheses.
+
+2017-08-11  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Phil: 41527 (tweak to use heap memory): Src/module.c,
+	Test/V07pcre.ztst: fix [[ ... ]]] conditions passed to modules.
+
+2017-08-09  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* unposted: README: 5.4,1 typo fixed.
+
+	* 41504: Src/lex.c, Src/parse.c, Test/A01grammar.ztst: make
+	empty strings work in case patterns with no opening
+	parenthesis.
+
 2017-08-08  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* unposted: Config/version.mk: update to 5.4.1-dev-0.
 
 	* unposted: Config/verson.mk, README, Etc/FAQ.yo: update to version
 	5.4.1.
