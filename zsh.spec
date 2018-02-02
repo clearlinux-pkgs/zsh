@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.4.2
-Release  : 22
+Release  : 23
 URL      : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz
 Source0  : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz
 Source99 : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz.asc
