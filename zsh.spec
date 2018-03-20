@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.4.2
-Release  : 23
+Release  : 24
 URL      : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz
 Source0  : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz
 Source99 : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz.asc
@@ -22,7 +22,9 @@ BuildRequires : libcap-dev
 BuildRequires : ncurses-dev
 BuildRequires : pcre-dev
 BuildRequires : pkgconfig(ncursesw)
+BuildRequires : qtbase-dev
 Patch1: 0001-stateless-configuration.patch
+Patch2: cve-2018-7549.patch
 
 %description
 -----------------
@@ -73,19 +75,24 @@ lib components for the zsh package.
 %prep
 %setup -q -n zsh-5.4.2
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1504118657
+export SOURCE_DATE_EPOCH=1521577556
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
 %configure --disable-static --with-tcsetpgrp \
 --enable-etcdir=/usr/share/defaults/etc \
 --enable-zshenv=/usr/share/defaults/etc/zshenv \
 --enable-zlogin=/usr/share/defaults/etc/zlogin \
 --enable-zshrc=/usr/share/defaults/etc/zshrc
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -95,7 +102,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1504118657
+export SOURCE_DATE_EPOCH=1521577556
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
