@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.4.2
-Release  : 24
+Release  : 25
 URL      : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz
 Source0  : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz
 Source99 : http://sourceforge.net/projects/zsh/files/zsh/5.4.2/zsh-5.4.2.tar.gz.asc
@@ -24,7 +24,8 @@ BuildRequires : pcre-dev
 BuildRequires : pkgconfig(ncursesw)
 BuildRequires : qtbase-dev
 Patch1: 0001-stateless-configuration.patch
-Patch2: cve-2018-7549.patch
+Patch2: cve-2018-7548.patch
+Patch3: cve-2018-7549.patch
 
 %description
 -----------------
@@ -76,13 +77,14 @@ lib components for the zsh package.
 %setup -q -n zsh-5.4.2
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1521577556
+export SOURCE_DATE_EPOCH=1521655163
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
@@ -102,7 +104,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1521577556
+export SOURCE_DATE_EPOCH=1521655163
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
