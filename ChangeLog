@@ -1,3 +1,58 @@
+2018-04-16  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* unposted: NEWS, README, Config/version.mk, Etc/FAQ.yo: update
+	to release 5.5.1.
+
+2018-04-16  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42659: Completion/Unix/Command/_git, Completion/Unix/Command/_sed,
+	Completion/Linux/Command/_ethtool, Completion/Linux/Command/_htop,
+	Completion/Linux/Command/_pidof, Completion/Unix/Command/_sqlite,
+	Completion/Unix/Command/_ssh: various completion option updates
+
+	* 42658: Completion/Unix/Command/_diffstat: allow compact form of
+	option arguments to diffstat
+
+	* Matthew Martin: 42643, 42644: Completion/BSD/Command/_cksum:
+	new cksum completion
+
+	* Matthew Martin: 42642 (tweaked for Solaris):
+	Completion/Unix/Command/_chown:
+	OpenBSD chown does not support -f and dragonfly has -x
+
+2018-04-15  Barton E. Schaefer  <schaefer@zsh.org>
+
+	* 42650: Src/utils.c: fix 42156 for zero-sized terminals
+
+	* 42636: Src/utils.c: fix GLOB_DOTS for !(RM_STAR_SILENT)
+
+2018-04-13  Daniel Hahler  <zsh@thequod.de>
+
+	* 42631: Completion/Unix/Command/_pgrep: _pgrep: pkill: fix completion
+	of signals.
+
+2018-04-12  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42624 (plus test): Src/exec.c, Test/C04funcdef.ztst: avoid
+	freeing memory that's still needed in multiple function
+	definition that has a duplicated function name
+
+2018-04-11  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42623: configure.ac: some extra quotes needed (and some
+	cosmetic) for 42618.
+
+2018-04-10  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Benedikt Morbach: 42618: configure.ac: support signal names
+	from multiple include files as needed for glibc 2.25.
+
+	* unposted: Config/version.mk: update dev version to 5.5-dev-0.
+
+2018-04-09  Eric Cook  <llua@gmx.com>
+	* 42613: pda: Completion/Linux/Command/_ss
+	fix quoting typo
+
 2018-04-08  Peter Stephenson  <p.w.stephenson@ntlworld.com>
 
 	* unposted: release zsh-5.5.
@@ -179,7 +234,7 @@
 	* 42487: Src/Zle/compctl.c: remove gcc 7.3.0 warnings and
 	potentially incorrect pointer usage.
 
-2018-03-18  Barton E. Schaefer  <schaefer@brasslantern.com>
+2018-03-18  Barton E. Schaefer  <schaefer@zsh.org>
 
 	* Stephane: 42469: Src/exec.c, Src/Modules/mapfile.c: fix 42465
 
