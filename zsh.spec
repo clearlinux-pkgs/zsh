@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.5.1
-Release  : 28
+Release  : 29
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.5.1/zsh-5.5.1.tar.gz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.5.1/zsh-5.5.1.tar.gz
 Source99 : https://sourceforge.net/projects/zsh/files/zsh/5.5.1/zsh-5.5.1.tar.gz.asc
