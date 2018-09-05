@@ -1,3 +1,777 @@
+2018-09-03  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Config/version.mk: Release 5.6.
+
+2018-09-03  Anthony Sottile  <asottile@umich.edu>
+
+	* CVE-2018-0502, CVE-2018-13259: Fix two security issues in
+	shebang line parsing. [With Buck Evan]
+
+2018-09-03  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* 43367: Makefile.in: Add maintainer targets 'tarxz-src' and
+	'targz-src'.
+
+2018-09-03  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* unposted: NEWS: mention Inf/NaN floating point changes
+
+	* unposted: Makefile.in: further to 43358 use same patchlevel
+	form for the release file
+
+2018-09-03  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* 43333: Etc/Makefile.in: Generate FAQ.html in the builddir,
+	rather than in the srcdir, and add it to the default target of
+	the Etc/ subdirectory.
+
+2018-09-03  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43365: Src/Zle/zle_keymap.c, Src/Zle/zle_main.c,
+	Src/Zle/zle_misc.c, Src/Zle/zle_vi.c: Don't handle ZLE timed
+	functions if just reading a single key.
+
+2018-08-31  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43358: Src/zsh.mdd: enforce consistent patchlevel form
+
+	* 43357: configure.ac: isinf/isnan can be macros rather
+	than functions so need a custom configure test
+
+	* unposted: Completion/Unix/Command/_git: git describe's
+	--long and --abbrev options are not mutually exclusive
+
+	* 43359: Completion/Unix/Command/_git:
+	further review of git remote set-url completion
+
+	* 42810: pseyfert: Completion/Unix/Command/_git:
+	git remote set-url completion
+
+2018-08-30  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43349: Completion/X/Command/_eog: new completion for eog
+
+	* 43350: Completion/Unix/Command/_zsh: support --emulate
+
+2018-08-29  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43351: Completion/Unix/Type/_diff_options: handle the new
+	diff implementation in the pre-release version of FreeBSD 12
+
+	* 43346: Completion/Linux/Command/_cryptsetup,
+	Completion/Linux/Command/_networkmanager,
+	Completion/Linux/Command/_strace, Completion/Unix/Command/_attr,
+	Completion/Linux/Command/_sysstat, Completion/Unix/Command/_cmp,
+	Completion/Unix/Command/_dhclient, Completion/Unix/Command/_dig,
+	Completion/Unix/Command/_entr, Completion/Unix/Command/_gnutls,
+	Completion/Unix/Command/_env, Completion/Unix/Command/_iostat,
+	Completion/Unix/Command/_ln, Completion/Unix/Command/_md5sum,
+	Completion/Unix/Command/_ps, Completion/Unix/Command/_route,
+	Completion/Unix/Command/_service, Completion/Unix/Command/_sort,
+	Completion/Unix/Command/_split, Completion/Unix/Command/_top:
+	various completion option updates
+
+	* 43348: Anton Shestakov: Completion/Unix/Command/_hg:
+	check for both -r and --rev
+
+	* 43347: Anton Shestakov: Completion/Unix/Command/_hg:
+	use revsets for suggestions for hg merge
+
+2018-08-28  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43345: Completion/Unix/Command/_mount,
+	Completion/Unix/Type/_umountable: don't modify global variable
+
+	* unposted: Completion/Linux/Command/_dkms: correct
+	completion argument order
+
+	* unposted: Completion/Unix/Command/_strings: completion for
+	argument to -s was missing
+
+	* unposted: Completion/Unix/Command/_tar: complete also for bsdtar
+
+	* unposted: Completion/Solaris/Command/_svccfg: fix typo in
+	function call
+
+2018-08-25  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Etc/FAQ.yo: Fix FAQ build, broken by 43184.
+
+	* unposted: Config/version.mk, NEWS, README: Test release:
+	5.5.1-test-1.
+
+	* 43331: Completion/Unix/Command/_diff3: Enhance positional
+	argument descriptions (thanks, Oliver).
+
+2018-08-24  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* 43313 (log message tweaked):
+	Functions/VCS_Info/Backends/VCS_INFO_get_data_git: vcs_info git:
+	For the branch name, try to find a symbolic name before falling
+	back to a raw commit hash.
+
+	* 43314: Functions/VCS_Info/Backends/VCS_INFO_get_data_git:
+	vcs_info git: Flatten a nested if.
+
+2018-08-24  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43330: Completion/BSD/Command/_cu: complete more options
+
+	* 43329: Completion/Unix/Command/_diff3: new diff3 completion
+
+	* 43328: Completion/X/Command/_zeal: new completion
+
+2018-08-23  dana  <dana@dana.is>
+
+	* unposted: Completion/Unix/Command/_man: Fix --ascii typo
+
+2018-08-23  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43325: Anton Shestakov: Completion/Unix/Command/_hg:
+	suggest merge tools for -t/--tool
+
+	* 43326: Anton Shestakov: Completion/Unix/Command/_hg:
+	add completion of -S/--subrepos to many commands
+
+	* github #27: Klas Mellbourn: Completion/X/Command/_code:
+	add --folder-uri to completion for Visual Studio Code
+
+	* 43301 (based on work by Julien Nicoulaud):
+	Completion/Debian/Command/_debuild, Completion/Unix/Command/_ack,
+	Completion/Unix/Command/_scons, Completion/Unix/Command/_vpnc,
+	Completion/X/Command/_geany: functions from zsh-completions project
+
+2018-08-21  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Doc/Zsh/compsys.yo: docs: Fix duplicated words
+	in _combination.
+
+2018-08-16  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* 43294: Doc/Zsh/zle.yo, Src/Zle/zle_main.c,
+	Src/Zle/zle_params.c: Add ZLE_RECURSIVE parameter.
+
+2018-08-15  dana  <dana@dana.is>
+
+	* 43302: Completion/Unix/Command/_du: Change -B to -B+
+
+2018-08-13  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Completion/Unix/Command/_make: Allow pasted arguments
+	for GNU make's -j option.
+
+2018-08-13  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* dana: 43275: Doc/Zsh/mod_mathfunc.yo, Src/Modules/mathfunc.c,
+	Test/V03mathfunc.ztst, configure.ac: Add log2 to mathfunc.
+
+2018-08-12  Marc Cornellà  <marc.cornella@live.com>
+
+	* unposted (PR #26): Completion/Unix/Command/_git: __git_files:
+	fix double quotation of star
+
+2018-08-09  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43264: Src/params.c, Test/D04parameter.ztst:
+	${+assoc[nonexistent]} returned 1 with KSH_ARRAYS.
+
+2018-08-08  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43261: Src/math.c, Test/C01arith.ztst: Apply unary minus to
+	entire lexical constant, so base doesn't get treated as negative.
+
+2018-08-07  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Anton Shestakov: 43254: Completion/Unix/Command/_hg: Remove hg
+	-w and add hg -S.
+
+	* Anton Shestakov: 43252: Completion/Unix/Command/_hg: fix up
+	various hg options for completion.
+
+	* Anton Shestakov: 43250: Completion/Unix/Command/_hg: Add hg
+	forget, phase, summary completions.
+
+	* Anton Shestakov: 43251: Completion/Unix/Command/_hg: fix
+	return value of some hg completion functions.
+
+	* Anton Shestakov: 43253: Completion/Unix/Command/_hg: hg
+	--style is deprecated, use --template.
+
+2018-08-01  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43227: Src/Modules/termcap.c, Src/Modules/terminfo.c,
+	Src/utils.c: fix memory leaks not fixed in 43219
+
+2018-07-31  dana  <dana@dana.is>
+
+	* 43207 (tweaked): Completion/Unix/Type/_bind_addresses,
+	Completion/Unix/Command/_php: Add options to control _bind_addresses
+	behaviour, improve PHP completion
+
+2018-07-31  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43219 (except term{cap,info}.c): Src/Modules/db_gdbm.c,
+	Src/Modules/pcre.c, Src/Zle/compcore.c, Src/init.c, Src/math.c,
+	Src/subst.c: fix several memory leaks
+
+2018-07-30  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43225: Src/Zle/zle_main.c: recalculate timeout after calling
+	handler within ZLE raw read.
+
+2018-07-29  Matthew Martin  <phy1729@gmail.com>
+
+	* 43185: Completion/Zsh/Type/_command_names: Use [ suffix for
+	associative arrays. Add + to remove-chars from Oliver.
+
+	* 43184: Etc/FAQ.yo: Remove reference to ftp_sites.yo.
+
+2018-07-25  dana  <dana@dana.is>
+
+	* 43203: Completion/Unix/Command/_lua: Add completion for lua
+
+	* Simon Ruderich: 43200: Completion/Linux/Command/_iptables: Add
+	completion for ip6tables*
+
+2018-07-20  dana  <dana@dana.is>
+
+	* 43196: Completion/Unix/Command/_nginx: Add completion for nginx
+
+2018-07-20  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43192: Completion/Unix/Command/_pgrep: simplify the completions
+	of comma-separated list of IDs.
+
+2018-07-19  dana  <dana@dana.is>
+
+	* 43186 (tweaked): Completion/Unix/Command/_crontab: Add completion
+	for cronie/dcron/Vixie crontab
+
+2018-07-19  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43189: Completion/Unix/Command/_install: similar fix as 43187
+	for option -f (_flags was renamed to _file_flags)
+
+	* 43183: Completion/Unix/Type/_ttys, Completion/Unix/Command/_gdb,
+	Completion/Unix/Command/_pgrep: fix '_ttys -o' on Linux, and use
+	it in _gdb and _pgrep.
+
+2018-07-19  Yasuhiro KIMURA  <yasu@utahime.org>
+
+	* 43187: Completion/Unix/Command/_install: Fix completion error
+	about 'm' option of 'install' command
+
+2018-07-17  Peter Stephenson  <p.w.stephenson@ntlworld.com>
+
+	* Doron Behar: 43166: Completion/Unix/Type/_pspdf,
+	Completion/X/Command/_zathura: new zathura completion.
+
+2018-07-18  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43177: Completion/Unix/Command/_grep: support bzgrep, and add
+	a few options for macOS.
+
+	* 43182: Completion/Unix/Command/_lldb: complete process name
+	after option -n/--attach-name
+
+2018-07-17  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* unposted: Doc/Makefile.in: remove ftp_sites.yo.
+
+	* Matthew Martin: 43179: Doc/Zsh/contrib.yo,
+	Doc/Zsh/ftp_sites.yo, Doc/Zsh/metafaq.yo: update distro docs to
+	remove dead links.
+
+	* 43176: Doc/Zsh/intro.yo: note right at start of manual that
+	default mode is not POSIX.
+
+2018-07-16  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Tim Smith: 43172: Doc/Zsh/mod_zutil.yo: document escaping of
+	colon in zformat -a.
+
+2018-07-11  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43164: Completion/Unix/Command/_gcc: fix 'args=' to 'args+=',
+	and update a few options.
+
+2018-07-10  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43155: Completion/Unix/Command/_gcc: escape : in action for -std
+
+2018-07-10  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43156, 43157: Src/exec.c: need to allow for possible
+	update of pointer by two in gethere().
+
+2018-07-09  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* users/23531: Src/exec.c, Test/C03traps.ztst: Fix error
+	exit/return from within shell construct inside nested function,
+	and in left hand side of pipe (regression due to broken tests);
+	stop tests from exiting too early and add new test for first fix.
+
+2018-07-07  Matthew Martin  <phy1729@gmail.com>
+
+	* 43106: Completion/BSD/Command/_ldap: Add ldap completer.
+
+	* 43046: Completion/Unix/Type/_pdf, Completion/X/Command/_mupdf:
+	Add mupdf completer.
+
+	* 42995: David Klann: Completion/Linux/Command/_networkmanager:
+	Only complete active connections for nmcli connection down.
+
+2018-07-03  dana  <dana@dana.is>
+
+	* 43105 (tweaked): Completion/Unix/Command/_pgrep: Add full procps
+	support, other improvements
+
+2018-07-03  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* dana: 43134: Completion/Unix/Type/_signals: don't complete SIG
+	in front of numeric signals.
+
+2018-07-02  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43108, 43121: Completion/Unix/Command/_killall: complete
+	various options
+
+2018-07-01  Doron Behar  <doron.behar@gmail.com>
+
+	* 43059: Completion/Unix/Command/_gpg: Use explicit UIDs for
+	state = public keys.
+
+2018-07-01  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43107: Completion/Unix/Type/_ttys, Completion/Unix/Command/_ps,
+	Completion/BSD/Command/_watch-snoop: add an option to _ttys to
+	complete only open ttys, and use it in _ps and _watch-snoop.
+
+2018-06-29  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* users/23519: README, Completion/Unix/Type/_remote_files: Use tag
+	remote-files instead of files for remote files.
+
+2018-06-27  Daniel Hahler  <zsh@thequod.de>
+
+	* 42746: Completion/Unix/Command/_vim: _vim: handle special values for
+	-u/-U.
+
+2018-06-27  Eric Cook  <llua@gmx.com>
+
+	* 43096: Eitan: Completion/Unix/Command/_vim, remove duplicate flag
+
+2018-06-25  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* 43091: Src/glob.c: In the (u) glob qualifier, expand and
+	correct "unknown user" error messages.
+
+2018-06-25  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43084: Doc/Zsh/zle.yo, Functions/Chpwd/zsh_directory_name_cdr,
+	Src/Zle/zle_main.c: vared -g suppresses variable creation and
+	override warnings; also suppress in function.
+
+2018-06-25  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 43079, 43086: Completion/Unix/Type/_process_names,
+	Completion/Unix/Command/_dtruss, Completion/Darwin/Command/_fs_usage,
+	Completion/Darwin/Command/_sc_usage: new utility to complete names
+	of running processes, and three new completion functions which use it.
+
+	* 43080: Completion/Unix/Type/_sys_calls: analyze recent syscall.h
+	properly
+
+2018-06-24  dana  <dana@dana.is>
+
+	* unposted: Completion/Linux/Command/_opkg: Fix mistyped variable
+	name
+
+2018-06-23  dana  <dana@dana.is>
+
+	* 43081: Completion/Darwin/Command/_networksetup: Add networksetup
+	completion
+
+	* 43088: Completion/Debian/Command/_wajig: Fix sub-command completion
+
+2018-06-18  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43074: Eitan: Completion/Unix/Command/_gcc: Completion for
+	additional linker options for clang and sanitizers for gcc
+
+	* 43078: Completion/Unix/Command/_sed: add completion for the
+	sed expression
+
+	* 43073: Completion/Linux/Command/_cryptsetup,
+	Completion/Linux/Command/_sysstat, Completion/Linux/Command/_ss,
+	Completion/Linux/Command/_kpartx, Completion/Linux/Command/_tune2fs,
+	Completion/Unix/Command/_ansible, Completion/Unix/Command/_git,
+	Completion/Unix/Command/_lynx, Completion/Unix/Command/_mpc,
+	Completion/Unix/Command/_readelf, Completion/Unix/Command/_sqlite,
+	Completion/Unix/Command/_subversion, Completion/Unix/Command/_tmux,
+	Completion/Unix/Command/_user_admin, Completion/Unix/Command/_wget,
+	Completion/Unix/Command/_xxd, Completion/X/Command/_qiv,
+	Completion/Zsh/Command/_which, Completion/Zsh/Command/_zed:
+	various completion option updates
+
+2018-06-20  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43077: Src/builtin.c: failure of math evaluation didn't
+	propagate to status of shift builtin.
+
+2018-06-20  dana  <dana@dana.is>
+
+	* 43075 (based on 24059): Doc/Zsh/mod_stat.yo, Doc/Zsh/prompt.yo,
+	Src/Modules/datetime.c,	Src/Modules/stat.c, Src/compat.c,
+	Src/prompt.c, Src/utils.c, Src/zsh_system.h, Test/D01prompt.ztst,
+	configure.ac: Support nanosecond precision in zsh/stat file times
+	and time formats generally (%9./%N)
+
+	* 43061: Completion/Darwin/Command/_open,
+	Completion/Unix/Command/_webbrowser: Improve open completion, adjust
+	_webbrowser wording
+
+	* 43060: Completion/Unix/Command/_stat,
+	Completion/Zsh/Command/_stat: Expand stat completion
+
+2018-06-18  dana  <dana@dana.is>
+
+	* 43047: Completion/Unix/Command/_hostname: Add hostname completion
+
+	* 43047: Completion/Unix/Type/_bind_addresses: Always return local IPs
+
+2018-06-18  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* unposted: Test/V01zmodload.ztst: updated for 43039.
+
+	* Eitan: 43029: Src/Modules/zftp.c, Src/signals.c, Src/signals.h,
+	configure.ac: remove test for signal handler return type as no
+	longer needed.
+
+2018-06-18  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 43006: Tim Smith: Completion/Unix/Command/_git: complete
+	modified files after `git stash --`
+
+	* users/23484: Completion/Unix/Command/_git: be consistent on
+	matcher specs for branches to fix issue with partial matching
+
+	* 43048: Eitan: Completion/Unix/Command/_gcc: add sanitizers,
+	standards aliases and fix -flto
+
+2018-06-17  dana  <dana@dana.is>
+
+	* 43043: Completion/Unix/Command/_comm,
+	Completion/Unix/Command/_sed: Improve comm/sed completion
+
+	* 43039: Src/Modules/parameter.mdd: Mark functions_source (et al.)
+	for auto-loading
+
+2018-06-16  dana  <dana@dana.is>
+
+	* 43030: Functions/VCS_Info/Backends/VCS_INFO_get_data_bzr,
+	Functions/VCS_Info/Backends/VCS_INFO_get_data_cvs,
+	Functions/VCS_Info/Backends/VCS_INFO_get_data_svn,
+	Functions/VCS_Info/Backends/VCS_INFO_get_data_tla,
+	Functions/VCS_Info/VCS_INFO_bydir_detect,
+	Functions/VCS_Info/VCS_INFO_realpath,
+	Functions/VCS_Info/vcs_info: Replace VCS_INFO_realpath() by :P
+
+	* 43031: Etc/completion-style-guide: Add note about quoting/escaping
+	(cf. 42992)
+
+	* 43031: Etc/completion-style-guide: Add note about optional/variant
+	syntax (cf. 43025)
+
+2018-06-15  dana  <dana@dana.is>
+
+	* 43024: Completion/Unix/Command/_man: Improve section-name matching
+
+2018-06-15  Matthew Martin  <phy1729@gmail.com>
+
+	* 42981: Completion/Unix/Command/_ed: Add ed completer
+
+2018-06-15  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* users/23472: 	Doc/Zsh/mod_system.yo, Src/Modules/system.c,
+	Src/exec.c, Src/zsh.h: Add $sysparams[procsubstpid].
+
+	* 43008: Src/options.c: combine suggestion from Sebastian to
+	silence warnings for double setgid/setuid with suggestion
+	from Eitan to put setgid first.
+
+2018-06-13  dana  <dana@dana.is>
+
+	* 42992: Completion/Unix/Command/_bash: Fix minor escaping bug
+
+	* 42992: Completion/Darwin/Command/_nvram,
+	Completion/Darwin/Command/_osascript, Completion/Darwin/Command/_say,
+	Completion/Darwin/Command/_scselect: Use _call_program to fetch
+	argument possibilities
+
+2018-06-12  dana  <dana@dana.is>
+
+	* unposted: Completion/Darwin/Type/_mac_applications: Change
+	'Mac OS X' to 'macOS'
+
+2018-06-11  dana  <dana@dana.is>
+
+	* 42983: Completion/Unix/Command/_man: Address misc. feedback
+
+	* 42984: Completion/Unix/Type/_files,
+	Completion/Unix/Type/_object_files: Fix argument pass-through to
+	compadd
+
+2018-06-10  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42978: dana: Completion/Darwin/Command/_pbcopy: fix small bug
+
+	* 42977: dana: Completion/Unix/Command/_man: Complete options to
+	major man variants, otherwise improve especially section matching
+
+2018-06-09  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42968: Eitan Adler: Completion/Unix/Command/_shutdown:
+	add "-c" for _shutdown completion on FreeBSD 12-current
+
+	* 42965: dana: Completion/Unix/Command/_bash,
+	Completion/Unix/Command/_sh: add full completion for bash
+
+	* 42964: Eitan Adler: Completion/BSD/Type/_fbsd_architectures:
+	Update list of fbsd architectures
+
+	* 42918: dana: Completion/Unix/Command/_jq: fix file completion
+
+	* 42918: dana: Completion/Unix/Command/_ldd: adapt detection of
+	GNU variant to work on Ubuntu
+
+2018-06-07  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42947: Doron Behar: Completion/Unix/Command/_luarocks:
+	new luarocks completion
+
+	* 42948: dana: Completion/Linux/Command/_opkg: new opkg completion
+
+	* 42931: dana: Completion/Unix/Command/_base64,
+	Completion/Unix/Command/_chroot, Completion/Unix/Command/_cksum,
+	Completion/Unix/Command/_lz4, Completion/Unix/Command/_md5sum,
+	Completion/Unix/Command/_tee, Completion/Unix/Command/_shasum,
+	Completion/Unix/Command/_readlink: completion for several
+	utilities especially for checksums across a variety of systems
+
+	* users/23434: Functions/Misc/zed: initialise UNDO_LIMIT_NO so
+	that an initial undo doesn't clear the whole edit buffer
+
+	* 42935: Eitan Adler: Completion/Unix/Command/_arp:
+	FreeBSD does not support -v for arp
+
+	* 42937: Eitan Adler: Completion/BSD/Command/_powerd: add -M/-m
+
+	* 43943: Completion/Unix/Command/_samba: update with long options
+
+2018-06-06  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Eitan: 42938: Src/Modules/mathfunc.c: name argument to
+	math_func is not unused.
+
+	* Eitan: 42939: Src/Zle/zle_params.c: pm argument to
+	set_registers is not unused.
+
+2018-06-05  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* Sebastian: 42929 (twaked): Functions/Misc/zed: additional
+	default bindings for emacs and vi modes.
+
+2018-06-03  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42826: Eitan Adler: Misc/bash2zshprompt: remove link to
+	now-spam website
+
+	* 42919: dana: Completion/Unix/Command/_uptime,
+	Completion/Unix/Command/_shuf: new shuf and uptime completions
+
+	* 42922: dana: Completion/Unix/Command/_tac: new tac completion
+
+	* 42881: Completion/Unix/Command/_ghostscript: update options in
+	ghostscript completion and query more matches directly from it
+
+	* 42920: Completion/Linux/Command/_dkms: new dkms completion
+
+2018-06-01  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42888: MACHINES: remove outdated issues and update general
+	description.
+
+2018-05-31  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 42870: Src/Zle/compcore.c: another improvement of 'compset -q'
+
+2018-05-29  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* c.f. 42865: config.guess, config.sub: update from GNU
+	distribution.
+
+	* Eitan Adler: 42862: configure.ac: AC_PROG_TRADITIONAL is no
+	longer needed.
+
+	* Eitan Adler: 42863: configure.ac: autoconf update to latest
+	conventions.
+
+2018-05-25  Jun-ichi Takimoto <takimoto-j@kba.biglobe.ne.jp>
+
+	* 42809: Src/Zle/compcore.c: slightly improve 'compset -q'
+
+2018-05-19  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42806: Completion/Unix/Command/_shutdown: fix where options
+	were lost due to args= assignment where args+= was needed
+
+	* 42803: Completion/Unix/Command/_netstat: handle Linux and
+	the the BSDs in netstat completion
+
+2018-05-17  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* Stephane: 42790: Doc/Zsh/expn.yo, NEWS, Src/pattern.c,
+	configure.ac: make [[:blank:]] match non-ASCII blanks
+
+	* 42784: Completion/Zsh/Command/_typeset: complete -s and -x
+	options to the functions builtin
+
+2018-05-17  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42793: Src/jobs.c, Src/zsh.h: Always define FDT_PROC_SUBST to
+	avoid proliferating #ifdef's.
+
+	* 42785: Src/builtins.c: redefining a user math function should
+	silently work as with redefining other shell objects.
+
+2018-05-14  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42297: dana: Src/params.c, Test/D06subscript.ztst: (e)
+	subscript needs extra work with scalars.
+
+	* 42234: Stephane: Src/signals.c: don't kill a process that's
+	already exited when killing a job.
+
+2018-05-13  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* 42488: Src/Modules/mathfunc.c, Src/builtin.c, Src/math.c,
+	Test/B03print.ztst, Test/C01arith.ztst, Test/V03mathfunc.ztst:
+	test cases for 42369 and address some issues in the code
+
+	* Nelson H. F. Beebe: 19597 (rebased 42369): Src/math.c,
+	Src/params.c. Src/Modules/mathfunc.c, configure.ac:
+	return Inf, NaN etc from floating point operations instead
+	of errors to allow non-stop IEEE 754 arithmetic
+
+	* 42760: Src/Zle/zle_thingy.c: move stack variable outside
+	while loop scope as it is accessed in the while condition
+
+2018-05-11  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42180: dana: Src/Zle/compcore.c: safety when removing
+	separators in completion.
+
+	* 42101 (tweaked): dana: Src/exec.c, Test/A06assign.ztst:
+	assigning shell status to array was broken.
+
+2018-05-08  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42752: Completion/Unx/Command/_git: better completion
+	handling for git aliases expanding to external command.
+
+	* 42751: Src/Zle/zle_main.c: Protect shell status around
+	time function execution in line editor.
+
+2018-05-02  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* Eitan Adler: 42740: Completion/BSD/Command/_systat:
+	Teach _systat about the 'zarc' screen
+
+	* Eitan Adler: 42732: Completion/Unix/Command/_ifconfig:
+	Add several more entries to ifconfig
+
+	* 42743: Completion/Unix/Command/_vorbis: update vorbis-tools
+	completion and include vorbiscomment with the rest
+
+2018-05-01  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* from branch fork_early, c.f. 42702: Src/exec.c: Various changes
+	to make forking for a command work better.  Move the fork even
+	earlier; add case of non-final pipeline elements; _exit when
+	forked; remove previous early fork in caller; replace fix for
+	leaked file descriptor in pipeline handling.
+
+2018-04-29  Oliver Kiddle  <okiddle@yahoo.co.uk>
+
+	* Matthew Martin: 42730: Completion/Unix/Command/_rmdir,
+	Completion/Unix/Type/_directories: Complete the options for rmdir
+
+	* Matthew Martin: 42729: Completion/Unix/Command/_df:
+	update df completion for [DFNO]BSD
+
+	* 42676: Completion/Unix/Command/_dd: deal with system
+	specific arguments
+
+	* 42728: Completion/Unix/Command/_tiff: update options and
+	add handling for tiff2pdf
+
+2018-04-29  Barton E. Schaefer  <schaefer@zsh.org>
+
+	* Ricardo Giorni: 42701: fix 42355 for multiple backslashes
+
+2018-04-26  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* c.f. 42726: Test/W02jobs.ztst: Back off fg and bg tests as they
+	are currently too hard to make robust.
+
+2018-04-25  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Src/exec.c: Correct process substitution buffer
+	size in the PATH_DEV_FD codepath.
+
+2018-04-25  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42722: Test/ztst.zsh, Test/W02jobs.ztst: replace ed with
+	dc and hope for better times.
+
+	* 42714: Test/W02jobs.ztst, Test/ztst.zsh: add basic fg and bg
+	tests using ed.  Improve output on pattern difference failure in
+	tests.
+
+2018-04-24  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42708: Src/exec.c, Src/Modules/clone.c, Src/Modules/zpty.c,
+	Test/D03procsubst.ztst: don't close file descriptors for
+	process substitution on closem() tidy up unless we are exiting
+	as they need to be visible to external processes.
+
+2018-04-23  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42705: Src/signals.c: another fix for 42630 --- also check
+	that killpg(pgrp, 0) is -1.
+
+	* 23362: Src/parse.c: Allow short loops with "while".
+
+2018-04-20  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42684 (with extra comments): Src/exec.c: Fork earlier
+	when executing command if run in background.
+
+2018-04-19  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42686: Src/signals.c: Fix 42630 only to change process groups
+	on exited process.
+
+2018-04-17  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 42630: Src/exec.c, Src/signals.c: Improve process group
+	handling in pipelines.  Main shell will reclaim terminal if
+	leader exits.  Allow SIGCHLD to interrupt reading data from
+	command substitution.
+
+	* unposted: Config/version.mk: update to 5.5.1-dev-0.
+
 2018-04-16  Peter Stephenson  <p.w.stephenson@ntlworld.com>
 
 	* unposted: NEWS, README, Config/version.mk, Etc/FAQ.yo: update
