@@ -1,4 +1,50 @@
+2018-09-14  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* 43457: Config/version.mk, Etc/FAQ.yo, NEWS, README: Release
+	5.6.2
+
+2018-09-14  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43466: Test/A05execution.ztst: path(5) test is too specific as
+	OS codes and messages may vary.
+
+2018-09-12  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Completion/Unix/Command/_subversion: _svn: Complete
+	--accept=recommended, new in 1.10.0.
+
+	* 43447: Etc/creating-a-release.txt, Makefile.in: Generate
+	tar.xz artifacts only.
+
+	* 43443: Completion/Unix/Command/_git: When completing worktrees,
+	show the ref and hash of each worktree.
+
+	* 43442: Completion/Unix/Command/_git: Break out a helper
+	function.
+
+2018-09-12  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43450: Src/signals.c: fix window size if reattaching shell
+	to terminal on exit of process.
+
+	* 43446: Src/exec.c, Src/jobs.c, Src/zsh.h: enhance 43409 to
+	pass back list_pipe_job as well, fixing additional races.
+
+2018-09-10  Jörg Thalheim  <joerg@thalheim.io>
+
+	* GitHub #28: Src/builtin.c: Add missing math.h include for
+	builtins
+
+2018-09-10  Peter Stephenson  <p.stephenson@samsung.com>
+
+	* 43426: Test/W02jobs.ztst: disable tests involving suspending
+	jobs as these are provoking races in particular on OpenSUSE.
+
 2018-09-08  Daniel Shahaf  <d.s@daniel.shahaf.name>
+
+	* unposted: Etc/creating-a-release.txt: Add another step.
+
+	* unposted: Config/version.mk: Post-release version bump.
 
 	* unposted: Config/version.mk, Etc/FAQ.yo, NEWS, README: Patch
 	release: 5.6.1
