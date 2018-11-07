@@ -6,17 +6,18 @@
 #
 Name     : zsh
 Version  : 5.6.2
-Release  : 34
+Release  : 35
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz
 Source99 : https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: zsh-bin
-Requires: zsh-lib
-Requires: zsh-data
-Requires: zsh-man
+Requires: zsh-bin = %{version}-%{release}
+Requires: zsh-data = %{version}-%{release}
+Requires: zsh-lib = %{version}-%{release}
+Requires: zsh-license = %{version}-%{release}
+Requires: zsh-man = %{version}-%{release}
 BuildRequires : buildreq-qmake
 BuildRequires : gdbm-dev
 BuildRequires : libcap-dev
@@ -39,6 +40,7 @@ release.
 Summary: bin components for the zsh package.
 Group: Binaries
 Requires: zsh-data = %{version}-%{release}
+Requires: zsh-license = %{version}-%{release}
 Requires: zsh-man = %{version}-%{release}
 
 %description bin
@@ -53,22 +55,22 @@ Group: Data
 data components for the zsh package.
 
 
-%package doc
-Summary: doc components for the zsh package.
-Group: Documentation
-Requires: zsh-man = %{version}-%{release}
-
-%description doc
-doc components for the zsh package.
-
-
 %package lib
 Summary: lib components for the zsh package.
 Group: Libraries
 Requires: zsh-data = %{version}-%{release}
+Requires: zsh-license = %{version}-%{release}
 
 %description lib
 lib components for the zsh package.
+
+
+%package license
+Summary: license components for the zsh package.
+Group: Default
+
+%description license
+license components for the zsh package.
 
 
 %package man
@@ -88,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537220249
+export SOURCE_DATE_EPOCH=1541626770
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -108,10 +110,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1537220249
+export SOURCE_DATE_EPOCH=1541626770
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/zsh
-cp LICENCE %{buildroot}/usr/share/doc/zsh/LICENCE
+mkdir -p %{buildroot}/usr/share/package-licenses/zsh
+cp LICENCE %{buildroot}/usr/share/package-licenses/zsh/LICENCE
 %make_install
 ## install_append content
 install -d -m 755 %{buildroot}/usr/share/defaults/etc
@@ -1373,10 +1375,6 @@ install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
 /usr/share/zsh/5.6.2/help/zstyle
 /usr/share/zsh/5.6.2/help/ztcp
 
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/zsh/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/zsh/5.6.2/zsh/attr.so
@@ -1415,8 +1413,12 @@ install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
 /usr/lib64/zsh/5.6.2/zsh/zselect.so
 /usr/lib64/zsh/5.6.2/zsh/zutil.so
 
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/zsh/LICENCE
+
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/zsh.1
 /usr/share/man/man1/zshall.1
 /usr/share/man/man1/zshbuiltins.1
