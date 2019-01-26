@@ -1,4 +1,4 @@
-From 6ea12eb228690baa622a80965a819cc9c21be7c7 Mon Sep 17 00:00:00 2001
+From b425d750aeaa28e7fe2d4dd4106dedcca71834aa Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
@@ -53,7 +53,7 @@ index c1a85de..22c179e 100644
 +    source /etc/zlogin
 +fi
 diff --git a/StartupFiles/zshenv b/StartupFiles/zshenv
-index 23363a4..42e5690 100644
+index 23363a4..776d852 100644
 --- a/StartupFiles/zshenv
 +++ b/StartupFiles/zshenv
 @@ -10,22 +10,53 @@
@@ -81,7 +81,7 @@ index 23363a4..42e5690 100644
 +if [ -f /etc/zshenv ]; then
 +    source /etc/zshenv
 +else
-+    PATH="/usr/local/bin:/usr/bin"
++    PATH="/usr/local/bin:/usr/bin:/var/lib/3rd-party/bin"
 +
 +    if [[ -x "/bin/vi" ]]; then
 +            EDITOR="/usr/bin/vi"
@@ -389,5 +389,5 @@ index d4e1d03..61a1693 100644
 +fi
 +
 -- 
-2.19.1
+2.20.0
 

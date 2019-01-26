@@ -4,10 +4,10 @@
 #
 Name     : zsh
 Version  : 5.7
-Release  : 37
+Release  : 38
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.7/zsh-5.7.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.7/zsh-5.7.tar.xz
-Summary  : A very advanced and programmable command interpreter (shell) for UNIX
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: zsh-bin = %{version}-%{release}
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1548388418
+export SOURCE_DATE_EPOCH=1548523702
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -106,7 +106,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1548388418
+export SOURCE_DATE_EPOCH=1548523702
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zsh
 cp LICENCE %{buildroot}/usr/share/package-licenses/zsh/LICENCE
