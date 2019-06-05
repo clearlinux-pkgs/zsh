@@ -1,1 +1,6 @@
 0001-stateless-configuration.patch
+0002-Correct-path-name-in-_ports.patch
+0003-Corrected-path-to-usr-share-defaults-etc-shells.patch
+0004-Correct-path-to-usr-share-defaults-etc-netconfig.patch
+0005-Correct-path-to-usr-share-defaults-etc-protocols.patch
+0006-Correct-path-to-usr-share-defaults-etc-rpc.patch

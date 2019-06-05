@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Lucius Hu <orctarorga@gmail.com>
+Date: Tue, 4 Jun 2019 23:14:26 -0400
+Subject: [PATCH] Correct path to `/usr/share/defaults/etc/rpc`
+
+---
+ Completion/Unix/Type/_bpf_filters | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Completion/Unix/Type/_bpf_filters b/Completion/Unix/Type/_bpf_filters
+index 54e2172..3c6ee36 100644
+--- a/Completion/Unix/Type/_bpf_filters
++++ b/Completion/Unix/Type/_bpf_filters
+@@ -174,7 +174,7 @@ _regex_arguments _bpf /$'[^\0]#\0'/ \( \
+       \|\
+         /$'rpc[ \0]'/ \
+         \(\
+-          /$'[^, \0]##[ \0]'/ ':programs:rpc program:compadd -qS, - ${${(f)"$(</etc/rpc)"}%%[[:blank:]#]*}' \
++          /$'[^, \0]##[ \0]'/ ':programs:rpc program:compadd -qS, - ${${(f)"$(</usr/share/defaults/etc/rpc)"}%%[[:blank:]#]*}' \
+         \|\
+           /$'[^, \0]##,[^, \0]##,'/ /$'[^, \0]##[ \0]'/ ':procedures:procedure:' \
+         \|\
+-- 
+https://clearlinux.org
+

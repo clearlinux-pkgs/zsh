@@ -1,0 +1,34 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Lucius Hu <orctarorga@gmail.com>
+Date: Tue, 4 Jun 2019 23:09:47 -0400
+Subject: [PATCH] Correct path to `/usr/share/defaults/etc/protocols`
+
+---
+ Completion/Unix/Command/_netstat | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Completion/Unix/Command/_netstat b/Completion/Unix/Command/_netstat
+index c03aae9..48e58db 100644
+--- a/Completion/Unix/Command/_netstat
++++ b/Completion/Unix/Command/_netstat
+@@ -84,7 +84,7 @@ case $OSTYPE in
+     )
+   ;|
+   (open|net)bsd*)
+-    popt='(-f)-p+[filter by protocol]:protocol:compadd - ${(M)${(f)"$(</etc/protocols)"}##[a-z0-9]#}'
++    popt='(-f)-p+[filter by protocol]:protocol:compadd - ${(M)${(f)"$(</usr/share/defaults/etc/protocols)"}##[a-z0-9]#}'
+     families=(
+       '(-u)-f+[specify address family]:address family:_sequence compadd - -a flist'
+       '(-f)-u[limit reports to the unix address family]' # undocumented on NetBSD
+@@ -276,7 +276,7 @@ case $OSTYPE in
+     pcb+=( $Mopts $verbose )
+   ;;
+   netbsd*)
+-    popt='(-f)-p+[filter by protocol]:protocol:compadd - ${(M)${(f)"$(</etc/protocols)"}##[a-z0-9]#}'
++    popt='(-f)-p+[filter by protocol]:protocol:compadd - ${(M)${(f)"$(</usr/share/defaults/etc/protocols)"}##[a-z0-9]#}'
+     Xopt='-X[force use of sysctl(3) when retrieving information]'
+     flist+=( arp ns atalk mpls local )
+     sets+=( queues '-[^-]#q*' )
+-- 
+https://clearlinux.org
+

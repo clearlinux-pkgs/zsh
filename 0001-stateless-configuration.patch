@@ -1,4 +1,4 @@
-From 66fae71bacc9f6dd10bca9b173300f413f6a6499 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 16 May 2017 14:46:31 -0500
 Subject: [PATCH] stateless configuration
@@ -389,5 +389,5 @@ index d4e1d03..61a1693 100644
 +fi
 +
 -- 
-2.20.0
+https://clearlinux.org
 

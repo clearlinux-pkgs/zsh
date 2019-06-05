@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Lucius Hu <orctarorga@gmail.com>
+Date: Tue, 4 Jun 2019 23:05:27 -0400
+Subject: [PATCH] Correct path to `/usr/share/defaults/etc/netconfig`
+
+---
+ Completion/Unix/Command/_mount | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Completion/Unix/Command/_mount b/Completion/Unix/Command/_mount
+index 301b9e5..ba75811 100644
+--- a/Completion/Unix/Command/_mount
++++ b/Completion/Unix/Command/_mount
+@@ -256,7 +256,7 @@ if (( ! $+_fs_any )); then
+       'noac[no attribute caching]'
+       'port[server IP port number]:port'
+       'posix[posix semantics]'
+-      'proto[specify protocol]:protocol:'\("$(grep -v '^#' /etc/netconfig 2> /dev/null | cut -d ' ' -f 1)"\)
++      'proto[specify protocol]:protocol:'\("$(grep -v '^#' /usr/share/defaults/etc/netconfig 2> /dev/null | cut -d ' ' -f 1)"\)
+       'public[force public file handle]'
+       '(noquota)quota[enable quotas]'
+       '(quota)noquota[disable quotas]'
+-- 
+https://clearlinux.org
+
