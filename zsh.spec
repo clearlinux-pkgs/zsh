@@ -6,11 +6,11 @@
 #
 Name     : zsh
 Version  : 5.7.1
-Release  : 41
+Release  : 42
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz
 Source99 : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz.asc
-Summary  : A very advanced and programmable command interpreter (shell) for UNIX
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: zsh-bin = %{version}-%{release}
@@ -18,13 +18,17 @@ Requires: zsh-data = %{version}-%{release}
 Requires: zsh-lib = %{version}-%{release}
 Requires: zsh-license = %{version}-%{release}
 Requires: zsh-man = %{version}-%{release}
-BuildRequires : buildreq-qmake
 BuildRequires : gdbm-dev
 BuildRequires : libcap-dev
 BuildRequires : ncurses-dev
 BuildRequires : pcre-dev
 BuildRequires : pkgconfig(ncursesw)
 Patch1: 0001-stateless-configuration.patch
+Patch2: 0002-Correct-path-name-in-_ports.patch
+Patch3: 0003-Corrected-path-to-usr-share-defaults-etc-shells.patch
+Patch4: 0004-Correct-path-to-usr-share-defaults-etc-netconfig.patch
+Patch5: 0005-Correct-path-to-usr-share-defaults-etc-protocols.patch
+Patch6: 0006-Correct-path-to-usr-share-defaults-etc-rpc.patch
 
 %description
 -----------------
@@ -40,7 +44,6 @@ Summary: bin components for the zsh package.
 Group: Binaries
 Requires: zsh-data = %{version}-%{release}
 Requires: zsh-license = %{version}-%{release}
-Requires: zsh-man = %{version}-%{release}
 
 %description bin
 bin components for the zsh package.
@@ -83,17 +86,23 @@ man components for the zsh package.
 %prep
 %setup -q -n zsh-5.7.1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549235315
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export SOURCE_DATE_EPOCH=1559749613
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --with-tcsetpgrp \
 --enable-etcdir=/usr/share/defaults/etc \
 --enable-zshenv=/usr/share/defaults/etc/zshenv \
@@ -109,7 +118,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1549235315
+export SOURCE_DATE_EPOCH=1559749613
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zsh
 cp LICENCE %{buildroot}/usr/share/package-licenses/zsh/LICENCE
