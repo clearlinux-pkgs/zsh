@@ -1,0 +1,108 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Lucius Hu <orctarorga@gmail.com>
+Date: Mon, 10 Jun 2019 23:44:31 -0400
+Subject: [PATCH] use stateless paths
+
+The following completion functions are modified so that it will try to
+read configurations from `/etc` directory, where system admin may overrides
+stateless defaults. And if there's no such system overrieds, they will
+read the stateless defaults from `/usr/share/defaults/etc` directory:
+
+- Completion/Unix/Command/_chsh
+- Completion/Unix/Command/_mount
+- Completion/Unix/Command/_su
+- Completion/Unix/Command/_user_admin
+- Completion/Unix/Type/_bpf_filters
+- Completion/Unix/Type/_ports
+
+On a system with Clear Linux and `zsh` installed, these files can be found
+under `/usr/share/zsh/<ZSH_VERSION>/functions` directory.
+---
+ Completion/Unix/Command/_chsh       | 2 +-
+ Completion/Unix/Command/_mount      | 2 +-
+ Completion/Unix/Command/_su         | 2 +-
+ Completion/Unix/Command/_user_admin | 2 +-
+ Completion/Unix/Type/_bpf_filters   | 2 +-
+ Completion/Unix/Type/_ports         | 3 +--
+ 6 files changed, 6 insertions(+), 7 deletions(-)
+
+diff --git a/Completion/Unix/Command/_chsh b/Completion/Unix/Command/_chsh
+index 006aa82..35868ae 100644
+--- a/Completion/Unix/Command/_chsh
++++ b/Completion/Unix/Command/_chsh
+@@ -63,5 +63,5 @@ case $OSTYPE in
+   ;;
+ esac
+ 
+-(( $#shells )) || shells=( ${(Z+Cn+)"$(</etc/shells)"} )
++(( $#shells )) || shells=( ${(Z+Cn+)"$([ -r /etc/shells ] && </etc/shells || </usr/share/defaults/etc/shells)"} )
+ _arguments $args '1:user name:_users'
+diff --git a/Completion/Unix/Command/_mount b/Completion/Unix/Command/_mount
+index 301b9e5..db6ddac 100644
+--- a/Completion/Unix/Command/_mount
++++ b/Completion/Unix/Command/_mount
+@@ -256,7 +256,7 @@ if (( ! $+_fs_any )); then
+       'noac[no attribute caching]'
+       'port[server IP port number]:port'
+       'posix[posix semantics]'
+-      'proto[specify protocol]:protocol:'\("$(grep -v '^#' /etc/netconfig 2> /dev/null | cut -d ' ' -f 1)"\)
++      'proto[specify protocol]:protocol:'\("$(grep -v '^#' "$([ -r /etc/netconfig ] && </etc/netconfig || </usr/share/defaults/etc/netconfig)" | cut -d ' ' -f 1)"\)
+       'public[force public file handle]'
+       '(noquota)quota[enable quotas]'
+       '(quota)noquota[disable quotas]'
+diff --git a/Completion/Unix/Command/_su b/Completion/Unix/Command/_su
+index 9009056..b069f81 100644
+--- a/Completion/Unix/Command/_su
++++ b/Completion/Unix/Command/_su
+@@ -68,7 +68,7 @@ fi
+ 
+ case $state in
+   shells)
+-    _wanted -C $context shells expl shell compadd ${(f)^"$(</etc/shells)"}(N)
++    _wanted -C $context shells expl shell compadd ${(f)^"$([ -r /etc/shells ] && </etc/shells || </usr/share/defaults/etc/shells)"}(N)
+     return
+   ;;
+   rest)
+diff --git a/Completion/Unix/Command/_user_admin b/Completion/Unix/Command/_user_admin
+index fe28c13..dbdbc00 100644
+--- a/Completion/Unix/Command/_user_admin
++++ b/Completion/Unix/Command/_user_admin
+@@ -9,7 +9,7 @@ case ${service%???}:${(M)service%???}:$OSTYPE in
+     if [[ -r /etc/shells ]]; then
+       shells=( ${${(f)"$(</etc/shells)"}:#\#*} )
+     else
+-      shells=( ${(M)commands:#*/(|[abckz]|tc|ba)sh} )
++      shells=( ${${(f)"$(</usr/share/defaults/etc/shells)"}:#\#*} )
+     fi
+     args+=(
+       '(-D -c --commend)'{-c+,--comment=}'[comment]:comment'
+diff --git a/Completion/Unix/Type/_bpf_filters b/Completion/Unix/Type/_bpf_filters
+index 54e2172..7132265 100644
+--- a/Completion/Unix/Type/_bpf_filters
++++ b/Completion/Unix/Type/_bpf_filters
+@@ -174,7 +174,7 @@ _regex_arguments _bpf /$'[^\0]#\0'/ \( \
+       \|\
+         /$'rpc[ \0]'/ \
+         \(\
+-          /$'[^, \0]##[ \0]'/ ':programs:rpc program:compadd -qS, - ${${(f)"$(</etc/rpc)"}%%[[:blank:]#]*}' \
++          /$'[^, \0]##[ \0]'/ ':programs:rpc program:compadd -qS, - ${${(f)"$([ -r /etc/rpc ] && </etc/rpc || </usr/share/defaults/etc/rpc)"}%%[[:blank:]#]*}' \
+         \|\
+           /$'[^, \0]##,[^, \0]##,'/ /$'[^, \0]##[ \0]'/ ':procedures:procedure:' \
+         \|\
+diff --git a/Completion/Unix/Type/_ports b/Completion/Unix/Type/_ports
+index 8c8da53..79a912a 100644
+--- a/Completion/Unix/Type/_ports
++++ b/Completion/Unix/Type/_ports
+@@ -4,8 +4,7 @@ local expl ports
+ 
+ if ! zstyle -a ":completion:${curcontext}:" ports ports; then
+   (( $+_cache_ports )) ||
+-      : ${(A)_cache_ports:=${${(M)${${(f)"$(</etc/services)"}:#\#*}#*/tcp}%%[ 	]*}}
+-
++  : ${(A)_cache_ports:=${${(M)${${(f)"$([ -r /etc/services ] && </etc/services || </usr/share/defaults/etc/services)"}:#\#*}#*/tcp}%%[  ]*}} 
+   ports=( "$_cache_ports[@]" )
+ fi
+ 
+-- 
+https://clearlinux.org
+
