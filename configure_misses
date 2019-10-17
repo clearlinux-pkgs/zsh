@@ -9,6 +9,9 @@ Configure miss: libc.h
 Configure miss: varargs.h usability
 Configure miss: varargs.h presence
 Configure miss: varargs.h
+Configure miss: sys/stropts.h usability
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h
 Configure miss: ncursesw/ncurses.h usability
 Configure miss: ncursesw/ncurses.h presence
 Configure miss: ncursesw/ncurses.h

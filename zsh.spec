@@ -6,10 +6,10 @@
 #
 Name     : zsh
 Version  : 5.7.1
-Release  : 43
+Release  : 44
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz
-Source99 : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz.asc
+Source1 : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -88,8 +88,8 @@ man components for the zsh package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560269582
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571336827
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -103,17 +103,17 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1560269582
+export SOURCE_DATE_EPOCH=1571336827
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zsh
-cp LICENCE %{buildroot}/usr/share/package-licenses/zsh/LICENCE
+cp %{_builddir}/zsh-5.7.1/LICENCE %{buildroot}/usr/share/package-licenses/zsh/057cb8c4b6ebc5ac7427ff7a11b2ca687a8a9471
 %make_install
 ## install_append content
 install -d -m 755 %{buildroot}/usr/share/defaults/etc
@@ -1431,7 +1431,7 @@ install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/zsh/LICENCE
+/usr/share/package-licenses/zsh/057cb8c4b6ebc5ac7427ff7a11b2ca687a8a9471
 
 %files man
 %defattr(0644,root,root,0755)
