@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.7.1
-Release  : 44
+Release  : 45
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz
 Source1 : https://sourceforge.net/projects/zsh/files/zsh/5.7.1/zsh-5.7.1.tar.xz.asc
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: zsh-bin = %{version}-%{release}
 Requires: zsh-data = %{version}-%{release}
+Requires: zsh-info = %{version}-%{release}
 Requires: zsh-lib = %{version}-%{release}
 Requires: zsh-license = %{version}-%{release}
 Requires: zsh-man = %{version}-%{release}
@@ -23,6 +24,7 @@ BuildRequires : libcap-dev
 BuildRequires : ncurses-dev
 BuildRequires : pcre-dev
 BuildRequires : pkgconfig(ncursesw)
+BuildRequires : texinfo
 Patch1: 0001-stateless-configuration.patch
 Patch2: 0002-use-stateless-paths.patch
 
@@ -53,6 +55,14 @@ Group: Data
 data components for the zsh package.
 
 
+%package info
+Summary: info components for the zsh package.
+Group: Default
+
+%description info
+info components for the zsh package.
+
+
 %package lib
 Summary: lib components for the zsh package.
 Group: Libraries
@@ -81,6 +91,7 @@ man components for the zsh package.
 
 %prep
 %setup -q -n zsh-5.7.1
+cd %{_builddir}/zsh-5.7.1
 %patch1 -p1
 %patch2 -p1
 
@@ -89,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571336827
+export SOURCE_DATE_EPOCH=1573777203
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -110,7 +121,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1571336827
+export SOURCE_DATE_EPOCH=1573777203
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zsh
 cp %{_builddir}/zsh-5.7.1/LICENCE %{buildroot}/usr/share/package-licenses/zsh/057cb8c4b6ebc5ac7427ff7a11b2ca687a8a9471
@@ -120,6 +131,7 @@ install -d -m 755 %{buildroot}/usr/share/defaults/etc
 install -m 644 StartupFiles/zlogin  %{buildroot}/usr/share/defaults/etc/
 install -m 644 StartupFiles/zshenv  %{buildroot}/usr/share/defaults/etc/
 install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
+make DESTDIR=%{buildroot} install.info
 ## install_append end
 
 %files
@@ -1389,6 +1401,16 @@ install -m 644 StartupFiles/zshrc   %{buildroot}/usr/share/defaults/etc/
 /usr/share/zsh/5.7.1/help/zsocket
 /usr/share/zsh/5.7.1/help/zstyle
 /usr/share/zsh/5.7.1/help/ztcp
+
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/zsh.info
+/usr/share/info/zsh.info-1
+/usr/share/info/zsh.info-2
+/usr/share/info/zsh.info-3
+/usr/share/info/zsh.info-4
+/usr/share/info/zsh.info-5
+/usr/share/info/zsh.info-6
 
 %files lib
 %defattr(-,root,root,-)

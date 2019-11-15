@@ -1,7 +1,5 @@
 Configure miss: if signed to unsigned casting is broken
 Configure miss: yodl
-Configure miss: texi2pdf
-Configure miss: texi2html
 Configure miss: ansi2knr
 Configure miss: libc.h usability
 Configure miss: libc.h presence
