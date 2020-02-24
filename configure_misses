@@ -63,6 +63,7 @@ Configure miss: limit RLIMIT_POSIXLOCKS
 Configure miss: limit RLIMIT_NPTS
 Configure miss: limit RLIMIT_SWAP
 Configure miss: limit RLIMIT_KQUEUES
+Configure miss: limit RLIMIT_UMTXP
 Configure miss: if RLIMIT_VMEM and RLIMIT_RSS are the same
 Configure miss: if RLIMIT_VMEM and RLIMIT_AS are the same
 Configure miss: if RLIMIT_RSS and RLIMIT_AS are the same
