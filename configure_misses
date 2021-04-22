@@ -1,83 +1,83 @@
-Configure miss: if signed to unsigned casting is broken
-Configure miss: yodl
-Configure miss: ansi2knr
-Configure miss: libc.h usability
-Configure miss: libc.h presence
-Configure miss: libc.h
-Configure miss: varargs.h usability
-Configure miss: varargs.h presence
-Configure miss: varargs.h
-Configure miss: sys/stropts.h usability
-Configure miss: sys/stropts.h presence
-Configure miss: sys/stropts.h
-Configure miss: ncursesw/ncurses.h usability
-Configure miss: ncursesw/ncurses.h presence
-Configure miss: ncursesw/ncurses.h
-Configure miss: ncurses/ncurses.h usability
-Configure miss: ncurses/ncurses.h presence
-Configure miss: ncurses/ncurses.h
-Configure miss: conflicts in sys/time.h and sys/select.h
-Configure miss: TIOCGWINSZ in termios.h
-Configure miss: streams headers including struct winsize
-Configure miss: if _XOPEN_SOURCE_EXTENDED should not be defined
-Configure miss: if we need to ignore ncurses
-Configure miss: whether _libiconv_version is declared
-Configure miss: struct stat.st_atimespec.tv_nsec
-Configure miss: struct stat.st_atimensec
-Configure miss: struct stat.st_mtimespec.tv_nsec
-Configure miss: struct stat.st_ctimespec.tv_nsec
-Configure miss: struct stat.st_ctimensec
-Configure miss: ut_xtime in struct utmpx
-Configure miss: d_stat in struct dirent
-Configure miss: d_ino in struct direct
-Configure miss: d_stat in struct direct
-Configure miss: faccessx
-Configure miss: _mktemp
-Configure miss: getipnodebyname
-Configure miss: nis_list
-Configure miss: xw
-Configure miss: pcre_compile
-Configure miss: pcre_study
-Configure miss: pcre_exec
-Configure miss: cygwin_conv_path
-Configure miss: srand_deterministic
-Configure miss: if tgetent returns 0 on success
-Configure miss: load
-Configure miss: loadquery
-Configure miss: loadbind
-Configure miss: unload
-Configure miss: shl_unload
-Configure miss: shl_findsym
-Configure miss: ncursesw/term.h
-Configure miss: ncurses/term.h
-Configure miss: if tgoto prototype is missing
-Configure miss: if rlim_t is longer than a long
-Configure miss: limit RLIMIT_AIO_MEM
-Configure miss: limit RLIMIT_AIO_OPS
-Configure miss: limit RLIMIT_NTHR
-Configure miss: limit RLIMIT_PTHREAD
-Configure miss: limit RLIMIT_SBSIZE
-Configure miss: limit RLIMIT_TCACHE
-Configure miss: limit RLIMIT_VMEM
-Configure miss: limit RLIMIT_POSIXLOCKS
-Configure miss: limit RLIMIT_NPTS
-Configure miss: limit RLIMIT_SWAP
-Configure miss: limit RLIMIT_KQUEUES
-Configure miss: limit RLIMIT_UMTXP
-Configure miss: if RLIMIT_VMEM and RLIMIT_RSS are the same
-Configure miss: if RLIMIT_VMEM and RLIMIT_AS are the same
-Configure miss: if RLIMIT_RSS and RLIMIT_AS are the same
-Configure miss: RFS superroot directory
-Configure miss: whether we should use the native getcwd
-Configure miss: library containing setproctitle
 Configure miss: NIS
 Configure miss: NIS+
-Configure miss: utmp file
-Configure miss: wtmp file
-Configure miss: utmpx file
-Configure miss: wtmpx file
-Configure miss: ioctl prototype in <unistd.h> or <termios.h>
+Configure miss: RFS superroot directory
+Configure miss: TIOCGWINSZ in termios.h
+Configure miss: _mktemp
+Configure miss: ansi2knr
+Configure miss: conflicts in sys/time.h and sys/select.h
+Configure miss: cygwin_conv_path
+Configure miss: d_ino in struct direct
+Configure miss: d_stat in struct direct
+Configure miss: d_stat in struct dirent
+Configure miss: faccessx
+Configure miss: getipnodebyname
+Configure miss: if RLIMIT_RSS and RLIMIT_AS are the same
+Configure miss: if RLIMIT_VMEM and RLIMIT_AS are the same
+Configure miss: if RLIMIT_VMEM and RLIMIT_RSS are the same
+Configure miss: if _XOPEN_SOURCE_EXTENDED should not be defined
 Configure miss: if getpwnam() is faked
-Configure miss: if the wcwidth() and/or iswprint() functions are broken
+Configure miss: if rlim_t is longer than a long
+Configure miss: if signed to unsigned casting is broken
+Configure miss: if tgetent returns 0 on success
+Configure miss: if tgoto prototype is missing
 Configure miss: if the isprint() function is broken
+Configure miss: if the wcwidth() and/or iswprint() functions are broken
+Configure miss: if we need to ignore ncurses
 Configure miss: if your dlsym() needs a leading underscore
+Configure miss: ioctl prototype in <unistd.h> or <termios.h>
+Configure miss: libc.h
+Configure miss: libc.h presence
+Configure miss: libc.h usability
+Configure miss: library containing setproctitle
+Configure miss: limit RLIMIT_AIO_MEM
+Configure miss: limit RLIMIT_AIO_OPS
+Configure miss: limit RLIMIT_KQUEUES
+Configure miss: limit RLIMIT_NPTS
+Configure miss: limit RLIMIT_NTHR
+Configure miss: limit RLIMIT_POSIXLOCKS
+Configure miss: limit RLIMIT_PTHREAD
+Configure miss: limit RLIMIT_SBSIZE
+Configure miss: limit RLIMIT_SWAP
+Configure miss: limit RLIMIT_TCACHE
+Configure miss: limit RLIMIT_UMTXP
+Configure miss: limit RLIMIT_VMEM
+Configure miss: load
+Configure miss: loadbind
+Configure miss: loadquery
+Configure miss: ncurses/ncurses.h
+Configure miss: ncurses/ncurses.h presence
+Configure miss: ncurses/ncurses.h usability
+Configure miss: ncurses/term.h
+Configure miss: ncursesw/ncurses.h
+Configure miss: ncursesw/ncurses.h presence
+Configure miss: ncursesw/ncurses.h usability
+Configure miss: ncursesw/term.h
+Configure miss: nis_list
+Configure miss: pcre_compile
+Configure miss: pcre_exec
+Configure miss: pcre_study
+Configure miss: shl_findsym
+Configure miss: shl_unload
+Configure miss: srand_deterministic
+Configure miss: streams headers including struct winsize
+Configure miss: struct stat.st_atimensec
+Configure miss: struct stat.st_atimespec.tv_nsec
+Configure miss: struct stat.st_ctimensec
+Configure miss: struct stat.st_ctimespec.tv_nsec
+Configure miss: struct stat.st_mtimespec.tv_nsec
+Configure miss: sys/stropts.h
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h usability
+Configure miss: unload
+Configure miss: ut_xtime in struct utmpx
+Configure miss: utmp file
+Configure miss: utmpx file
+Configure miss: varargs.h
+Configure miss: varargs.h presence
+Configure miss: varargs.h usability
+Configure miss: whether _libiconv_version is declared
+Configure miss: whether we should use the native getcwd
+Configure miss: wtmp file
+Configure miss: wtmpx file
+Configure miss: xw
+Configure miss: yodl
