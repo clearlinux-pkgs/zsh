@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.8
-Release  : 47
+Release  : 48
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.8/zsh-5.8.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.8/zsh-5.8.tar.xz
 Source1  : https://sourceforge.net/projects/zsh/files/zsh/5.8/zsh-5.8.tar.xz.asc
@@ -103,10 +103,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
 export SOURCE_DATE_EPOCH=1619064108
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 %configure --disable-static --with-tcsetpgrp \
 --enable-etcdir=/usr/share/defaults/etc \
 --enable-zshenv=/usr/share/defaults/etc/zshenv \
