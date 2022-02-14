@@ -10,8 +10,8 @@ this should not run automatically for new users.
  Scripts/newuser     |   8 --
  StartupFiles/zlogin |  16 +--
  StartupFiles/zshenv |  67 ++++++++----
- StartupFiles/zshrc  | 252 +++++++++++++++++---------------------------
- 4 files changed, 149 insertions(+), 194 deletions(-)
+ StartupFiles/zshrc  | 251 +++++++++++++++++---------------------------
+ 4 files changed, 148 insertions(+), 194 deletions(-)
  delete mode 100644 Scripts/newuser
 
 diff --git a/Scripts/newuser b/Scripts/newuser
@@ -129,10 +129,10 @@ index 23363a4..aa7d8a0 100644
 +    export PATH EDITOR TERM CFLAGS CXXFLAGS CFFLAGS FFLAGS XDG_CONFIG_DIRS
  fi
 diff --git a/StartupFiles/zshrc b/StartupFiles/zshrc
-index d4e1d03..61a1693 100644
+index d4e1d03..41dd548 100644
 --- a/StartupFiles/zshrc
 +++ b/StartupFiles/zshrc
-@@ -6,158 +6,100 @@
+@@ -6,158 +6,99 @@
  # options, key bindings, etc.
  #
  
@@ -387,7 +387,3 @@ index d4e1d03..61a1693 100644
 +
 +    umask 022
 +fi
-+
--- 
-https://clearlinux.org
-

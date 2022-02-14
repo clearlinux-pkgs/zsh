@@ -27,7 +27,7 @@ under `/usr/share/zsh/<ZSH_VERSION>/functions` directory.
  6 files changed, 6 insertions(+), 7 deletions(-)
 
 diff --git a/Completion/Unix/Command/_chsh b/Completion/Unix/Command/_chsh
-index 006aa82..35868ae 100644
+index 8023698..2b05aae 100644
 --- a/Completion/Unix/Command/_chsh
 +++ b/Completion/Unix/Command/_chsh
 @@ -63,5 +63,5 @@ case $OSTYPE in
@@ -51,10 +51,10 @@ index 301b9e5..db6ddac 100644
        '(noquota)quota[enable quotas]'
        '(quota)noquota[disable quotas]'
 diff --git a/Completion/Unix/Command/_su b/Completion/Unix/Command/_su
-index 9009056..b069f81 100644
+index 032f867..28a940f 100644
 --- a/Completion/Unix/Command/_su
 +++ b/Completion/Unix/Command/_su
-@@ -68,7 +68,7 @@ fi
+@@ -89,7 +89,7 @@ fi
  
  case $state in
    shells)
@@ -64,7 +64,7 @@ index 9009056..b069f81 100644
    ;;
    rest)
 diff --git a/Completion/Unix/Command/_user_admin b/Completion/Unix/Command/_user_admin
-index fe28c13..dbdbc00 100644
+index c7e1efc..807ef22 100644
 --- a/Completion/Unix/Command/_user_admin
 +++ b/Completion/Unix/Command/_user_admin
 @@ -9,7 +9,7 @@ case ${service%???}:${(M)service%???}:$OSTYPE in
@@ -90,7 +90,7 @@ index 54e2172..7132265 100644
            /$'[^, \0]##,[^, \0]##,'/ /$'[^, \0]##[ \0]'/ ':procedures:procedure:' \
          \|\
 diff --git a/Completion/Unix/Type/_ports b/Completion/Unix/Type/_ports
-index 8c8da53..79a912a 100644
+index 8c8da53..59e17be 100644
 --- a/Completion/Unix/Type/_ports
 +++ b/Completion/Unix/Type/_ports
 @@ -4,8 +4,7 @@ local expl ports
@@ -99,10 +99,7 @@ index 8c8da53..79a912a 100644
    (( $+_cache_ports )) ||
 -      : ${(A)_cache_ports:=${${(M)${${(f)"$(</etc/services)"}:#\#*}#*/tcp}%%[ 	]*}}
 -
-+  : ${(A)_cache_ports:=${${(M)${${(f)"$([ -r /etc/services ] && </etc/services || </usr/share/defaults/etc/services)"}:#\#*}#*/tcp}%%[  ]*}} 
++  : ${(A)_cache_ports:=${${(M)${${(f)"$([ -r /etc/services ] && </etc/services || </usr/share/defaults/etc/services)"}:#\#*}#*/tcp}%%[  ]*}}
    ports=( "$_cache_ports[@]" )
  fi
  
--- 
-https://clearlinux.org
-

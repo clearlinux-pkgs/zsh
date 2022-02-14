@@ -10,6 +10,7 @@ Configure miss: d_ino in struct direct
 Configure miss: d_stat in struct direct
 Configure miss: d_stat in struct dirent
 Configure miss: faccessx
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: getipnodebyname
 Configure miss: if RLIMIT_RSS and RLIMIT_AS are the same
 Configure miss: if RLIMIT_VMEM and RLIMIT_AS are the same
@@ -26,8 +27,6 @@ Configure miss: if we need to ignore ncurses
 Configure miss: if your dlsym() needs a leading underscore
 Configure miss: ioctl prototype in <unistd.h> or <termios.h>
 Configure miss: libc.h
-Configure miss: libc.h presence
-Configure miss: libc.h usability
 Configure miss: library containing setproctitle
 Configure miss: limit RLIMIT_AIO_MEM
 Configure miss: limit RLIMIT_AIO_OPS
@@ -45,12 +44,8 @@ Configure miss: load
 Configure miss: loadbind
 Configure miss: loadquery
 Configure miss: ncurses/ncurses.h
-Configure miss: ncurses/ncurses.h presence
-Configure miss: ncurses/ncurses.h usability
 Configure miss: ncurses/term.h
 Configure miss: ncursesw/ncurses.h
-Configure miss: ncursesw/ncurses.h presence
-Configure miss: ncursesw/ncurses.h usability
 Configure miss: ncursesw/term.h
 Configure miss: nis_list
 Configure miss: pcre_compile
@@ -66,15 +61,11 @@ Configure miss: struct stat.st_ctimensec
 Configure miss: struct stat.st_ctimespec.tv_nsec
 Configure miss: struct stat.st_mtimespec.tv_nsec
 Configure miss: sys/stropts.h
-Configure miss: sys/stropts.h presence
-Configure miss: sys/stropts.h usability
 Configure miss: unload
 Configure miss: ut_xtime in struct utmpx
 Configure miss: utmp file
 Configure miss: utmpx file
 Configure miss: varargs.h
-Configure miss: varargs.h presence
-Configure miss: varargs.h usability
 Configure miss: whether _libiconv_version is declared
 Configure miss: whether we should use the native getcwd
 Configure miss: wtmp file
