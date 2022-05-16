@@ -1,2 +1,3 @@
 0001-stateless-configuration.patch
 0002-use-stateless-paths.patch
+0003-Fixup-zsh-path-in-scripts.patch

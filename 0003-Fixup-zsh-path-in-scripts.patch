@@ -1,0 +1,33 @@
+From 0baa2bee6d3fb356487f10c76d1cb4ddc20d17f2 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Mon, 16 May 2022 14:33:33 -0700
+Subject: [PATCH] Fixup zsh path in scripts
+
+---
+ Functions/VCS_Info/test-repo-git-rebase-apply | 2 +-
+ Functions/VCS_Info/test-repo-git-rebase-merge | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Functions/VCS_Info/test-repo-git-rebase-apply b/Functions/VCS_Info/test-repo-git-rebase-apply
+index ce49690..eb0e41f 100755
+--- a/Functions/VCS_Info/test-repo-git-rebase-apply
++++ b/Functions/VCS_Info/test-repo-git-rebase-apply
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/zsh -f
++#!/bin/zsh -f
+ #
+ # This script creates a test repository for testing the git backend's behaviour during rebase-apply operations.
+ #
+diff --git a/Functions/VCS_Info/test-repo-git-rebase-merge b/Functions/VCS_Info/test-repo-git-rebase-merge
+index ce49690..eb0e41f 100755
+--- a/Functions/VCS_Info/test-repo-git-rebase-merge
++++ b/Functions/VCS_Info/test-repo-git-rebase-merge
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/zsh -f
++#!/bin/zsh -f
+ #
+ # This script creates a test repository for testing the git backend's behaviour during rebase-apply operations.
+ #
+-- 
+2.36.0
+
