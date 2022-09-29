@@ -1,0 +1,121 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Thu, 29 Sep 2022 22:19:46 +0000
+Subject: [PATCH] Fix compat with grep 3.8
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ Functions/Misc/allopt   | 2 +-
+ Misc/compctl-examples   | 2 +-
+ Test/D07multibyte.ztst  | 2 +-
+ Test/E01options.ztst    | 2 +-
+ Test/V07pcre.ztst       | 2 +-
+ Test/X02zlevi.ztst      | 2 +-
+ Test/X03zlebindkey.ztst | 2 +-
+ Test/Y01completion.ztst | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/Functions/Misc/allopt b/Functions/Misc/allopt
+index 5d5d288..7bae831 100644
+--- a/Functions/Misc/allopt
++++ b/Functions/Misc/allopt
+@@ -19,7 +19,7 @@ listalloptions () {
+ }
+ 
+ if [[ -n $@ ]]; then
+-    listalloptions | egrep "${(j.|.)@}"
++    listalloptions | grep -E "${(j.|.)@}"
+ else
+     listalloptions
+ fi
+diff --git a/Misc/compctl-examples b/Misc/compctl-examples
+index 1b9fc0a..b59988e 100644
+--- a/Misc/compctl-examples
++++ b/Misc/compctl-examples
+@@ -654,7 +654,7 @@ comp_nfsmount () {
+ compctl -s '$(mount | \
+ 	      sed -e "s/^[^ ]* on \\([^ ]*\\) type.*/\\1/"'"$(
+ 	      if [[ ! $UID = 0 ]]; then
+-		  echo ' | egrep "^${(j:|:)$(comp_fsmount)}\$"'
++		  echo ' | grep -E "^${(j:|:)$(comp_fsmount)}\$"'
+ 	      fi)"')' umount
+ compctl -s '$(comp_fsmount)' + \
+ 	-x 'S[/]' -f -- + \
+diff --git a/Test/D07multibyte.ztst b/Test/D07multibyte.ztst
+index e2e9a25..39c6253 100644
+--- a/Test/D07multibyte.ztst
++++ b/Test/D07multibyte.ztst
+@@ -6,7 +6,7 @@
+   unset -m LC_\*
+   mb_ok=
+   langs=(en_{US,GB}.{UTF-,utf}8 en.UTF-8
+-	 $(locale -a 2>/dev/null | egrep 'utf8|UTF-8'))
++	 $(locale -a 2>/dev/null | grep -E 'utf8|UTF-8'))
+   for LANG in $langs; do
+     if [[ é = ? ]]; then
+       mb_ok=1
+diff --git a/Test/E01options.ztst b/Test/E01options.ztst
+index 2acbfd3..27bbe31 100644
+--- a/Test/E01options.ztst
++++ b/Test/E01options.ztst
+@@ -651,7 +651,7 @@
+ >noktarg1
+ >0 1
+ 
+-  showopt() { setopt | egrep 'localoptions|ksharrays'; }
++  showopt() { setopt | grep -E 'localoptions|ksharrays'; }
+   f1() { setopt localoptions ksharrays; showopt }
+   f2() { setopt ksharrays; showopt }
+   setopt kshoptionprint
+diff --git a/Test/V07pcre.ztst b/Test/V07pcre.ztst
+index c9c844d..a186692 100644
+--- a/Test/V07pcre.ztst
++++ b/Test/V07pcre.ztst
+@@ -12,7 +12,7 @@
+   unset -m LC_\*
+   mb_ok=
+   langs=(en_{US,GB}.{UTF-,utf}8 en.UTF-8
+-	 $(locale -a 2>/dev/null | egrep 'utf8|UTF-8'))
++	 $(locale -a 2>/dev/null | grep -E 'utf8|UTF-8'))
+   for LANG in $langs; do
+     if [[ é = ? ]]; then
+       mb_ok=1
+diff --git a/Test/X02zlevi.ztst b/Test/X02zlevi.ztst
+index 8146d67..261c814 100644
+--- a/Test/X02zlevi.ztst
++++ b/Test/X02zlevi.ztst
+@@ -4,7 +4,7 @@
+   unset -m LC_\*
+   ZSH_TEST_LANG=
+   langs=(en_{US,GB}.{UTF-,utf}8 en.UTF-8
+-	 $(locale -a 2>/dev/null | egrep 'utf8|UTF-8'))
++	 $(locale -a 2>/dev/null | grep -E 'utf8|UTF-8'))
+   for LANG in $langs; do
+     if [[ é = ? ]]; then
+       ZSH_TEST_LANG=$LANG 
+diff --git a/Test/X03zlebindkey.ztst b/Test/X03zlebindkey.ztst
+index 43692a8..2eb5a49 100644
+--- a/Test/X03zlebindkey.ztst
++++ b/Test/X03zlebindkey.ztst
+@@ -6,7 +6,7 @@
+   unset -m LC_\*
+   ZSH_TEST_LANG=
+   langs=(en_{US,GB}.{UTF-,utf}8 en.UTF-8
+-	 $(locale -a 2>/dev/null | egrep 'utf8|UTF-8'))
++	 $(locale -a 2>/dev/null | grep -E 'utf8|UTF-8'))
+   for LANG in $langs; do
+     if [[ é = ? ]]; then
+       ZSH_TEST_LANG=$LANG
+diff --git a/Test/Y01completion.ztst b/Test/Y01completion.ztst
+index 6af0efc..4d7ee4d 100644
+--- a/Test/Y01completion.ztst
++++ b/Test/Y01completion.ztst
+@@ -4,7 +4,7 @@
+   unset -m LC_\*
+   ZSH_TEST_LANG=
+   langs=(en_{US,GB}.{UTF-,utf}8 en.UTF-8
+-         $(locale -a 2>/dev/null | egrep 'utf8|UTF-8'))
++         $(locale -a 2>/dev/null | grep -E 'utf8|UTF-8'))
+   for LANG in $langs; do
+     if [[ é = ? ]]; then
+       ZSH_TEST_LANG=$LANG

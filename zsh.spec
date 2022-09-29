@@ -6,7 +6,7 @@
 #
 Name     : zsh
 Version  : 5.9
-Release  : 51
+Release  : 52
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz
 Source1  : https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz.asc
@@ -28,6 +28,7 @@ BuildRequires : texinfo
 Patch1: 0001-stateless-configuration.patch
 Patch2: 0002-use-stateless-paths.patch
 Patch3: 0003-Fixup-zsh-path-in-scripts.patch
+Patch4: 0004-Fix-compat-with-grep-3.8.patch
 
 %description
 -----------------
@@ -97,13 +98,14 @@ cd %{_builddir}/zsh-5.9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1652737092
+export SOURCE_DATE_EPOCH=1664490375
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -124,10 +126,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1652737092
+export SOURCE_DATE_EPOCH=1664490375
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zsh
-cp %{_builddir}/zsh-5.9/LICENCE %{buildroot}/usr/share/package-licenses/zsh/057cb8c4b6ebc5ac7427ff7a11b2ca687a8a9471
+cp %{_builddir}/zsh-%{version}/LICENCE %{buildroot}/usr/share/package-licenses/zsh/057cb8c4b6ebc5ac7427ff7a11b2ca687a8a9471
 %make_install
 ## install_append content
 install -d -m 755 %{buildroot}/usr/share/defaults/etc

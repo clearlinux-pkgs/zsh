@@ -1,5 +1,3 @@
-Configure miss: NIS
-Configure miss: NIS+
 Configure miss: RFS superroot directory
 Configure miss: TIOCGWINSZ in termios.h
 Configure miss: _mktemp
@@ -11,6 +9,7 @@ Configure miss: d_stat in struct direct
 Configure miss: d_stat in struct dirent
 Configure miss: faccessx
 Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gdbm_open
 Configure miss: getipnodebyname
 Configure miss: if RLIMIT_RSS and RLIMIT_AS are the same
 Configure miss: if RLIMIT_VMEM and RLIMIT_AS are the same

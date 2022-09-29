@@ -51,10 +51,10 @@ index 301b9e5..db6ddac 100644
        '(noquota)quota[enable quotas]'
        '(quota)noquota[disable quotas]'
 diff --git a/Completion/Unix/Command/_su b/Completion/Unix/Command/_su
-index 032f867..28a940f 100644
+index 1af751a..1f58c4d 100644
 --- a/Completion/Unix/Command/_su
 +++ b/Completion/Unix/Command/_su
-@@ -89,7 +89,7 @@ fi
+@@ -95,7 +95,7 @@ fi
  
  case $state in
    shells)
@@ -64,7 +64,7 @@ index 032f867..28a940f 100644
    ;;
    rest)
 diff --git a/Completion/Unix/Command/_user_admin b/Completion/Unix/Command/_user_admin
-index c7e1efc..807ef22 100644
+index db1c977..5494059 100644
 --- a/Completion/Unix/Command/_user_admin
 +++ b/Completion/Unix/Command/_user_admin
 @@ -9,7 +9,7 @@ case ${service%???}:${(M)service%???}:$OSTYPE in
@@ -77,7 +77,7 @@ index c7e1efc..807ef22 100644
      args+=(
        '(-D -c --commend)'{-c+,--comment=}'[comment]:comment'
 diff --git a/Completion/Unix/Type/_bpf_filters b/Completion/Unix/Type/_bpf_filters
-index 54e2172..7132265 100644
+index b744b1a..48f11a9 100644
 --- a/Completion/Unix/Type/_bpf_filters
 +++ b/Completion/Unix/Type/_bpf_filters
 @@ -174,7 +174,7 @@ _regex_arguments _bpf /$'[^\0]#\0'/ \( \
