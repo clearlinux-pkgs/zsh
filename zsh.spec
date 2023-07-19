@@ -7,7 +7,7 @@
 #
 Name     : zsh
 Version  : 5.9
-Release  : 53
+Release  : 54
 URL      : https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz
 Source0  : https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz
 Source1  : https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz.asc
@@ -110,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689740953
+export SOURCE_DATE_EPOCH=1689749312
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fstack-protector-strong -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -131,7 +131,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1689740953
+export SOURCE_DATE_EPOCH=1689749312
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/zsh
 cp %{_builddir}/zsh-%{version}/LICENCE %{buildroot}/usr/share/package-licenses/zsh/057cb8c4b6ebc5ac7427ff7a11b2ca687a8a9471 || :
